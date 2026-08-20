@@ -1,6 +1,4 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { Alert } from '@/components/ui/Alert'
-import { Button } from '@/components/ui/Button'
 import {
   Card,
   CardContent,
@@ -8,49 +6,52 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
-import { useToast } from '@/components/ui/Toast'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
-import { useAuth } from '@/context/AuthContext'
+import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
+import { Sidebar } from '@/components/layout/Sidebar'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
 
-// Временная заглушка вместо главной страницы. Настоящая будет на Этапе 9.
-function TemporaryDashboard() {
-  const { user, signOut } = useAuth()
-  const { showToast } = useToast()
-
-  async function handleSignOut() {
-    try {
-      await signOut()
-      showToast('Вы вышли из аккаунта', 'success')
-    } catch (error) {
-      showToast(
-        error instanceof Error ? error.message : 'Не удалось выйти',
-        'error',
-      )
-    }
-  }
-
+// Временная сборка каркаса. На шаге 4.2 переедет в MainLayout.
+function TemporaryShell() {
   return (
-    <div className="min-h-screen bg-slate-50 p-6">
-      <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Закрытая страница</CardTitle>
-            <CardDescription>
-              Сюда попадают только вошедшие пользователи.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4">
-            <Alert variant="success" title="Доступ разрешён">
-              {user?.email}
-            </Alert>
-            <Button variant="secondary" onClick={handleSignOut}>
-              Выйти из аккаунта
-            </Button>
-          </CardContent>
-        </Card>
+    <div className="flex min-h-screen flex-col bg-slate-50">
+      <Header />
+
+      <div className="flex flex-1">
+        <aside className="hidden w-64 shrink-0 border-r border-slate-200 bg-white/70 backdrop-blur-md lg:block">
+          <Sidebar />
+        </aside>
+
+        <main className="flex-1 p-4 sm:p-6">
+          <div className="mx-auto w-full max-w-3xl">
+            <Card>
+              <CardHeader>
+                <CardTitle>Каркас приложения</CardTitle>
+                <CardDescription>
+                  Шапка сверху, меню слева, подвал снизу.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col gap-2 text-sm text-slate-600">
+                <p>
+                  Пункт «Главная» в меню подсвечен синим — это текущий раздел.
+                </p>
+                <p>
+                  Остальные пункты пока возвращают сюда же: их страницы появятся
+                  на своих этапах.
+                </p>
+                <p>
+                  На узком экране меню слева прячется, а в шапке появляется
+                  кнопка с тремя полосками. Работать она начнёт на шаге 4.2.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </main>
       </div>
+
+      <Footer />
     </div>
   )
 }
@@ -63,7 +64,7 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<TemporaryDashboard />} />
+          <Route path="/" element={<TemporaryShell />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />
