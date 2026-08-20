@@ -1,4 +1,10 @@
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from 'react-router-dom'
 import { Alert } from '@/components/ui/Alert'
 import { Button } from '@/components/ui/Button'
 import {
@@ -15,7 +21,8 @@ import { useAuth } from '@/context/AuthContext'
 // Временная заглушка вместо страницы входа. Настоящая будет на шаге 3.3.
 function TemporaryLoginScreen() {
   const location = useLocation()
-  const from = location.state as string | null
+  const state = location.state as { from?: string } | null
+  const from = state?.from ?? null
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-6">
