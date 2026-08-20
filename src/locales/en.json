@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "Personal Finance Tracker"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "incomes": "Income",
+    "expenses": "Expenses",
+    "budgets": "Budgets",
+    "goals": "Goals",
+    "calendar": "Calendar",
+    "statistics": "Statistics",
+    "profile": "Profile"
+  },
+  "header": {
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "menu": "Menu",
+    "signOut": "Sign out",
+    "language": "Language"
+  },
+  "footer": {
+    "project": "Educational project"
+  },
+  "auth": {
+    "signOutSuccess": "You have signed out",
+    "signOutError": "Could not sign out"
+  },
+  "pages": {
+    "placeholder": "Section under construction. The real page arrives at stage {{stage}}.",
+    "dashboard": "Overview of your finances",
+    "incomes": "Track your income",
+    "expenses": "Track spending by category",
+    "budgets": "Category limits",
+    "goals": "Savings and deadlines",
+    "calendar": "Payments and income by day",
+    "statistics": "Charts and spending breakdown",
+    "profile": "Personal details and settings"
+  }
+}

@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import { LogOut, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useToast } from '@/components/ui/Toast'
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import { useAuth } from '@/context/AuthContext'
 
 type HeaderProps = {
@@ -10,6 +12,7 @@ type HeaderProps = {
 export function Header({ onMenuClick }: HeaderProps) {
   const { user, signOut } = useAuth()
   const { showToast } = useToast()
+  const { t } = useTranslation()
 
   const metadataName = user?.user_metadata?.name as string | undefined
   const displayName = metadataName ?? user?.email ?? ''
@@ -18,10 +21,10 @@ export function Header({ onMenuClick }: HeaderProps) {
   async function handleSignOut() {
     try {
       await signOut()
-      showToast('Вы вышли из аккаунта', 'success')
+      showToast(t('auth.signOutSuccess'), 'success')
     } catch (error) {
       showToast(
-        error instanceof Error ? error.message : 'Не удалось выйти',
+        error instanceof Error ? error.message : t('auth.signOutError'),
         'error',
       )
     }
@@ -33,17 +36,20 @@ export function Header({ onMenuClick }: HeaderProps) {
         <button
           type="button"
           onClick={onMenuClick}
-          aria-label="Открыть меню"
+          aria-label={t('header.openMenu')}
           className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
 
         <p className="truncate text-sm font-semibold tracking-tight text-slate-900">
-          Personal Finance Tracker
+          {t('app.name')}
         </p>
 
         <div className="ml-auto flex items-center gap-3">
+          {/* Рядом с этим переключателем на Этапе 12 встанет переключатель темы */}
+          <LanguageSwitcher />
+
           <div className="hidden min-w-0 text-right sm:block">
             <p className="truncate text-sm font-medium text-slate-900">
               {displayName}
@@ -57,7 +63,7 @@ export function Header({ onMenuClick }: HeaderProps) {
 
           <Button variant="ghost" size="sm" onClick={handleSignOut}>
             <LogOut className="h-4 w-4" />
-            <span className="hidden sm:inline">Выйти</span>
+            <span className="hidden sm:inline">{t('header.signOut')}</span>
           </Button>
         </div>
       </div>

@@ -1,0 +1,40 @@
+{
+  "app": {
+    "name": "Personal Finance Tracker"
+  },
+  "nav": {
+    "dashboard": "Главная",
+    "incomes": "Доходы",
+    "expenses": "Расходы",
+    "budgets": "Бюджеты",
+    "goals": "Цели",
+    "calendar": "Календарь",
+    "statistics": "Статистика",
+    "profile": "Профиль"
+  },
+  "header": {
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню",
+    "menu": "Меню",
+    "signOut": "Выйти",
+    "language": "Язык"
+  },
+  "footer": {
+    "project": "Учебный проект"
+  },
+  "auth": {
+    "signOutSuccess": "Вы вышли из аккаунта",
+    "signOutError": "Не удалось выйти"
+  },
+  "pages": {
+    "placeholder": "Раздел в разработке. Настоящая страница появится на этапе {{stage}}.",
+    "dashboard": "Сводка по вашим финансам",
+    "incomes": "Учёт поступлений",
+    "expenses": "Учёт трат по категориям",
+    "budgets": "Лимиты по категориям",
+    "goals": "Накопления и сроки",
+    "calendar": "Платежи и поступления по дням",
+    "statistics": "Графики и разбор трат",
+    "profile": "Личные данные и настройки"
+  }
+}

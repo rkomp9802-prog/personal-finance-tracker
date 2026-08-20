@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import {
   ArrowDownLeft,
@@ -16,18 +17,21 @@ type SidebarProps = {
 }
 
 // Один список — один источник правды о разделах приложения.
-const navigationItems = [
-  { to: '/', label: 'Главная', icon: LayoutDashboard, end: true },
-  { to: '/incomes', label: 'Доходы', icon: ArrowDownLeft, end: false },
-  { to: '/expenses', label: 'Расходы', icon: ArrowUpRight, end: false },
-  { to: '/budgets', label: 'Бюджеты', icon: Wallet, end: false },
-  { to: '/goals', label: 'Цели', icon: Target, end: false },
-  { to: '/calendar', label: 'Календарь', icon: Calendar, end: false },
-  { to: '/statistics', label: 'Статистика', icon: PieChart, end: false },
-  { to: '/profile', label: 'Профиль', icon: User, end: false },
+// labelKey — ключ в словарях переводов, а не сама надпись.
+export const navigationItems = [
+  { to: '/', labelKey: 'nav.dashboard', icon: LayoutDashboard, end: true },
+  { to: '/incomes', labelKey: 'nav.incomes', icon: ArrowDownLeft, end: false },
+  { to: '/expenses', labelKey: 'nav.expenses', icon: ArrowUpRight, end: false },
+  { to: '/budgets', labelKey: 'nav.budgets', icon: Wallet, end: false },
+  { to: '/goals', labelKey: 'nav.goals', icon: Target, end: false },
+  { to: '/calendar', labelKey: 'nav.calendar', icon: Calendar, end: false },
+  { to: '/statistics', labelKey: 'nav.statistics', icon: PieChart, end: false },
+  { to: '/profile', labelKey: 'nav.profile', icon: User, end: false },
 ]
 
 export function Sidebar({ onNavigate }: SidebarProps) {
+  const { t } = useTranslation()
+
   return (
     <nav className="flex h-full flex-col gap-1 overflow-y-auto p-4">
       {navigationItems.map((item) => {
@@ -49,7 +53,7 @@ export function Sidebar({ onNavigate }: SidebarProps) {
             }
           >
             <Icon className="h-4 w-4 shrink-0" />
-            <span>{item.label}</span>
+            <span>{t(item.labelKey)}</span>
           </NavLink>
         )
       })}

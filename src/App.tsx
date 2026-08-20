@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import {
   Card,
@@ -13,24 +14,26 @@ import { Register } from '@/pages/Register'
 
 // Временная заглушка. Каждый раздел получит настоящую страницу на своём этапе.
 function PlaceholderPage({
-  title,
-  description,
+  titleKey,
+  descriptionKey,
   stage,
 }: {
-  title: string
-  description: string
+  titleKey: string
+  descriptionKey: string
   stage: string
 }) {
+  const { t } = useTranslation()
+
   return (
     <div className="mx-auto w-full max-w-4xl">
       <Card>
         <CardHeader>
-          <CardTitle>{title}</CardTitle>
-          <CardDescription>{description}</CardDescription>
+          <CardTitle>{t(titleKey)}</CardTitle>
+          <CardDescription>{t(descriptionKey)}</CardDescription>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-slate-600">
-            Раздел в разработке. Настоящая страница появится на {stage}.
+            {t('pages.placeholder', { stage })}
           </p>
         </CardContent>
       </Card>
@@ -51,9 +54,9 @@ function App() {
               path="/"
               element={
                 <PlaceholderPage
-                  title="Главная"
-                  description="Сводка по вашим финансам"
-                  stage="Этапе 9"
+                  titleKey="nav.dashboard"
+                  descriptionKey="pages.dashboard"
+                  stage="9"
                 />
               }
             />
@@ -61,9 +64,9 @@ function App() {
               path="/incomes"
               element={
                 <PlaceholderPage
-                  title="Доходы"
-                  description="Учёт поступлений"
-                  stage="Этапе 5"
+                  titleKey="nav.incomes"
+                  descriptionKey="pages.incomes"
+                  stage="5"
                 />
               }
             />
@@ -71,9 +74,9 @@ function App() {
               path="/expenses"
               element={
                 <PlaceholderPage
-                  title="Расходы"
-                  description="Учёт трат по категориям"
-                  stage="Этапе 6"
+                  titleKey="nav.expenses"
+                  descriptionKey="pages.expenses"
+                  stage="6"
                 />
               }
             />
@@ -81,9 +84,9 @@ function App() {
               path="/budgets"
               element={
                 <PlaceholderPage
-                  title="Бюджеты"
-                  description="Лимиты по категориям"
-                  stage="Этапе 7"
+                  titleKey="nav.budgets"
+                  descriptionKey="pages.budgets"
+                  stage="7"
                 />
               }
             />
@@ -91,9 +94,9 @@ function App() {
               path="/goals"
               element={
                 <PlaceholderPage
-                  title="Цели"
-                  description="Накопления и сроки"
-                  stage="Этапе 8"
+                  titleKey="nav.goals"
+                  descriptionKey="pages.goals"
+                  stage="8"
                 />
               }
             />
@@ -101,9 +104,9 @@ function App() {
               path="/calendar"
               element={
                 <PlaceholderPage
-                  title="Календарь"
-                  description="Платежи и поступления по дням"
-                  stage="Этапе 11"
+                  titleKey="nav.calendar"
+                  descriptionKey="pages.calendar"
+                  stage="11"
                 />
               }
             />
@@ -111,9 +114,9 @@ function App() {
               path="/statistics"
               element={
                 <PlaceholderPage
-                  title="Статистика"
-                  description="Графики и разбор трат"
-                  stage="Этапе 10"
+                  titleKey="nav.statistics"
+                  descriptionKey="pages.statistics"
+                  stage="10"
                 />
               }
             />
@@ -121,9 +124,9 @@ function App() {
               path="/profile"
               element={
                 <PlaceholderPage
-                  title="Профиль"
-                  description="Личные данные и настройки"
-                  stage="Этапе 12"
+                  titleKey="nav.profile"
+                  descriptionKey="pages.profile"
+                  stage="12"
                 />
               }
             />
