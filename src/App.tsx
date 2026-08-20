@@ -1,23 +1,20 @@
 import { useState } from 'react'
+import { Alert } from '@/components/ui/Alert'
 import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
+import { Dialog } from '@/components/ui/Dialog'
+import { Skeleton, SkeletonText } from '@/components/ui/Skeleton'
+import { useToast } from '@/components/ui/Toast'
 
 function App() {
-  const [amount, setAmount] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-
-  function runLoadingDemo() {
-    setIsLoading(true)
-    window.setTimeout(() => setIsLoading(false), 1200)
-  }
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const { showToast } = useToast()
 
   return (
     <div className="min-h-screen bg-slate-50 p-6">
@@ -27,73 +24,111 @@ function App() {
             Personal Finance Tracker
           </p>
           <h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">
-            UI-Kit
+            UI-Kit: сообщения и загрузка
           </h1>
-          <p className="mt-2 text-sm text-slate-600">
-            Базовые детали интерфейса. Дальше из них собираются все экраны
-            приложения.
-          </p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Кнопки</CardTitle>
-            <CardDescription>Четыре вида и три размера.</CardDescription>
+            <CardTitle>Сообщения на странице</CardTitle>
+            <CardDescription>
+              Спокойный тон вместо агрессивных баннеров.
+            </CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-wrap items-center gap-3">
-            <Button>Основная</Button>
-            <Button variant="secondary">Вторичная</Button>
-            <Button variant="ghost">Без фона</Button>
-            <Button variant="danger">Удалить</Button>
-            <Button size="sm">Маленькая</Button>
-            <Button size="lg">Большая</Button>
-            <Button disabled>Отключена</Button>
+          <CardContent className="flex flex-col gap-3">
+            <Alert title="Подсказка">
+              Добавьте первую операцию, чтобы увидеть статистику.
+            </Alert>
+            <Alert variant="success" title="Цель достигнута">
+              Вы накопили нужную сумму на «Отпуск».
+            </Alert>
+            <Alert variant="warning" title="Бюджет почти исчерпан">
+              На категорию «Кафе» осталось 12% лимита до конца месяца.
+            </Alert>
+            <Alert variant="danger" title="Не удалось сохранить">
+              Проверьте соединение с интернетом и попробуйте ещё раз.
+            </Alert>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Поля ввода</CardTitle>
+            <CardTitle>Заглушки при загрузке</CardTitle>
             <CardDescription>
-              С подписью, подсказкой и состоянием ошибки.
+              Так выглядит карточка, пока данные едут из базы.
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4 sm:grid-cols-2">
-            <Input
-              label="Сумма"
-              placeholder="0"
-              value={amount}
-              onChange={(event) => setAmount(event.target.value)}
-              hint="Введите сумму в сумах"
-            />
-            <Input label="Комментарий" placeholder="Например: обед" />
-            <Input
-              label="Email"
-              placeholder="you@example.com"
-              error="Введите корректный адрес"
-            />
-            <Input label="Недоступное поле" placeholder="Заблокировано" disabled />
+          <CardContent className="flex flex-col gap-4">
+            <div className="flex items-center gap-4">
+              <Skeleton className="h-12 w-12 rounded-full" />
+              <div className="flex-1">
+                <Skeleton className="h-4 w-40" />
+                <Skeleton className="mt-2 h-4 w-24" />
+              </div>
+              <Skeleton className="h-6 w-24" />
+            </div>
+            <SkeletonText lines={3} />
           </CardContent>
-          <CardFooter>
-            <Button fullWidth isLoading={isLoading} onClick={runLoadingDemo}>
-              Проверить состояние загрузки
-            </Button>
-          </CardFooter>
         </Card>
 
-        <Card interactive>
+        <Card>
           <CardHeader>
-            <CardTitle>Карточка с наведением</CardTitle>
-            <CardDescription>Наведи мышкой — тень станет глубже.</CardDescription>
+            <CardTitle>Всплывающее окно и уведомления</CardTitle>
+            <CardDescription>Нажми на кнопки и посмотри.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <p className="text-sm text-slate-600">
-              Такие карточки будут использоваться для списков операций, бюджетов
-              и целей.
-            </p>
+          <CardContent className="flex flex-wrap gap-3">
+            <Button onClick={() => setIsDialogOpen(true)}>
+              Открыть окно
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => showToast('Операция сохранена', 'success')}
+            >
+              Уведомление об успехе
+            </Button>
+            <Button
+              variant="secondary"
+              onClick={() => showToast('Не удалось сохранить', 'error')}
+            >
+              Уведомление об ошибке
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => showToast('Черновик сохранён')}
+            >
+              Обычное уведомление
+            </Button>
           </CardContent>
         </Card>
       </div>
+
+      <Dialog
+        open={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        title="Удалить операцию?"
+        description="Это действие нельзя отменить."
+        footer={
+          <>
+            <Button variant="secondary" onClick={() => setIsDialogOpen(false)}>
+              Отмена
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => {
+                setIsDialogOpen(false)
+                showToast('Операция удалена', 'success')
+              }}
+            >
+              Удалить
+            </Button>
+          </>
+        }
+      >
+        <p className="text-sm leading-relaxed text-slate-600">
+          Запись «Обед в кафе — 45 000 сум» будет удалена без возможности
+          восстановления.
+        </p>
+      </Dialog>
     </div>
   )
 }
