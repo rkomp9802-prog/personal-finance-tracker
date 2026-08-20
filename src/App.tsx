@@ -1,10 +1,4 @@
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-} from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Alert } from '@/components/ui/Alert'
 import { Button } from '@/components/ui/Button'
 import {
@@ -17,36 +11,8 @@ import {
 import { useToast } from '@/components/ui/Toast'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { useAuth } from '@/context/AuthContext'
-
-// Временная заглушка вместо страницы входа. Настоящая будет на шаге 3.3.
-function TemporaryLoginScreen() {
-  const location = useLocation()
-  const state = location.state as { from?: string } | null
-  const from = state?.from ?? null
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-6">
-      <Card className="w-full max-w-md">
-        <CardHeader>
-          <CardTitle>Вход</CardTitle>
-          <CardDescription>
-            Временный экран. Настоящая форма появится на шаге 3.3.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col gap-3">
-          <Alert title="Охранник сработал">
-            Вы не вошли в систему, поэтому доступ к закрытой странице закрыт.
-          </Alert>
-          {from ? (
-            <p className="text-sm text-slate-500">
-              Вы пытались открыть: <span className="text-slate-900">{from}</span>
-            </p>
-          ) : null}
-        </CardContent>
-      </Card>
-    </div>
-  )
-}
+import { Login } from '@/pages/Login'
+import { Register } from '@/pages/Register'
 
 // Временная заглушка вместо главной страницы. Настоящая будет на Этапе 9.
 function TemporaryDashboard() {
@@ -93,7 +59,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<TemporaryLoginScreen />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<TemporaryDashboard />} />
