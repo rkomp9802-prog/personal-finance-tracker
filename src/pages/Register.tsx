@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,18 +14,22 @@ import {
   CardTitle,
 } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import { useToast } from '@/components/ui/Toast'
 import { useAuth } from '@/context/AuthContext'
 
 const registerSchema = z
   .object({
-    name: z.string().min(2, 'Имя должно быть не короче 2 символов'),
-    email: z.string().min(1, 'Введите email').email('Некорректный email'),
-    password: z.string().min(6, 'Пароль должен быть не короче 6 символов'),
-    confirmPassword: z.string().min(1, 'Повторите пароль'),
+    name: z.string().min(2, 'validation.nameMin'),
+    email: z
+      .string()
+      .min(1, 'validation.emailRequired')
+      .email('validation.emailInvalid'),
+    password: z.string().min(6, 'validation.passwordMin'),
+    confirmPassword: z.string().min(1, 'validation.confirmRequired'),
   })
   .refine((values) => values.password === values.confirmPassword, {
-    message: 'Пароли не совпадают',
+    message: 'validation.passwordsMismatch',
     path: ['confirmPassword'],
   })
 
@@ -33,6 +38,7 @@ type RegisterFormValues = z.infer<typeof registerSchema>
 export function Register() {
   const { signUp, user, isLoading } = useAuth()
   const { showToast } = useToast()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const [formError, setFormError] = useState<string | null>(null)
 
@@ -59,11 +65,14 @@ export function Register() {
 
     try {
       await signUp(values.email, values.password, values.name)
-      showToast('Аккаунт создан', 'success')
+      showToast(t('auth.signUpSuccess'), 'success')
       navigate('/', { replace: true })
     } catch (error) {
+      const raw = error instanceof Error ? error.message : ''
       setFormError(
-        error instanceof Error ? error.message : 'Не удалось зарегистрироваться',
+        raw.startsWith('auth.errors.')
+          ? t(raw)
+          : raw || t('auth.errors.unknown'),
       )
     }
   }
@@ -71,21 +80,21 @@ export function Register() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="w-full max-w-sm">
+        <div className="mb-4 flex justify-center">
+          <LanguageSwitcher />
+        </div>
+
         <div className="mb-6 text-center">
-          <p className="text-sm font-medium text-slate-500">
-            Personal Finance Tracker
-          </p>
+          <p className="text-sm font-medium text-slate-500">{t('app.name')}</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
-            Создать аккаунт
+            {t('auth.createAccountHeading')}
           </h1>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Регистрация</CardTitle>
-            <CardDescription>
-              Займёт меньше минуты. Данные видны только вам.
-            </CardDescription>
+            <CardTitle>{t('auth.registerTitle')}</CardTitle>
+            <CardDescription>{t('auth.registerDescription')}</CardDescription>
           </CardHeader>
 
           <CardContent>
@@ -95,61 +104,67 @@ export function Register() {
               noValidate
             >
               {formError ? (
-                <Alert variant="danger" title="Не удалось зарегистрироваться">
+                <Alert variant="danger" title={t('auth.registerFailed')}>
                   {formError}
                 </Alert>
               ) : null}
 
               <Input
-                label="Имя"
+                label={t('auth.name')}
                 type="text"
                 autoComplete="name"
-                placeholder="Как к вам обращаться"
-                error={errors.name?.message}
+                placeholder={t('auth.namePlaceholder')}
+                error={errors.name ? t(errors.name.message ?? '') : undefined}
                 {...register('name')}
               />
 
               <Input
-                label="Email"
+                label={t('auth.email')}
                 type="email"
                 autoComplete="email"
-                placeholder="you@example.com"
-                error={errors.email?.message}
+                placeholder={t('auth.emailPlaceholder')}
+                error={errors.email ? t(errors.email.message ?? '') : undefined}
                 {...register('email')}
               />
 
               <Input
-                label="Пароль"
+                label={t('auth.password')}
                 type="password"
                 autoComplete="new-password"
-                placeholder="Минимум 6 символов"
-                error={errors.password?.message}
+                placeholder={t('auth.newPasswordPlaceholder')}
+                error={
+                  errors.password ? t(errors.password.message ?? '') : undefined
+                }
                 {...register('password')}
               />
 
               <Input
-                label="Повторите пароль"
+                label={t('auth.confirmPassword')}
                 type="password"
                 autoComplete="new-password"
-                placeholder="Ещё раз тот же пароль"
-                error={errors.confirmPassword?.message}
+                placeholder={t('auth.confirmPasswordPlaceholder')}
+                error={
+                  errors.confirmPassword
+                    ? t(errors.confirmPassword.message ?? '')
+                    : undefined
+                }
                 {...register('confirmPassword')}
               />
 
               <Button type="submit" fullWidth isLoading={isSubmitting}>
-                Создать аккаунт
+                {t('auth.signUp')}
               </Button>
             </form>
           </CardContent>
         </Card>
 
         <p className="mt-4 text-center text-sm text-slate-600">
-          Уже есть аккаунт?{' '}
+          {t('auth.haveAccount')}{' '}
           <Link
             to="/login"
             className="font-medium text-blue-600 transition-colors hover:text-blue-700"
           >
-            Войти
+            {t('auth.loginLink')}
           </Link>
         </p>
       </div>

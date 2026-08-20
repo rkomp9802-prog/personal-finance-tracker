@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -13,13 +14,17 @@ import {
   CardTitle,
 } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
 import { useToast } from '@/components/ui/Toast'
 import { useAuth } from '@/context/AuthContext'
 
-// Правила проверки полей. Проверка происходит до обращения к серверу.
+// В правилах проверки лежат ключи переводов, а не готовые фразы.
 const loginSchema = z.object({
-  email: z.string().min(1, 'Введите email').email('Некорректный email'),
-  password: z.string().min(1, 'Введите пароль'),
+  email: z
+    .string()
+    .min(1, 'validation.emailRequired')
+    .email('validation.emailInvalid'),
+  password: z.string().min(1, 'validation.passwordRequired'),
 })
 
 type LoginFormValues = z.infer<typeof loginSchema>
@@ -27,6 +32,7 @@ type LoginFormValues = z.infer<typeof loginSchema>
 export function Login() {
   const { signIn, user, isLoading } = useAuth()
   const { showToast } = useToast()
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const [formError, setFormError] = useState<string | null>(null)
@@ -43,7 +49,6 @@ export function Login() {
   const state = location.state as { from?: string } | null
   const redirectTo = state?.from ?? '/'
 
-  // Уже вошёл — незачем показывать форму входа.
   if (!isLoading && user) {
     return <Navigate to={redirectTo} replace />
   }
@@ -53,31 +58,36 @@ export function Login() {
 
     try {
       await signIn(values.email, values.password)
-      showToast('С возвращением!', 'success')
+      showToast(t('auth.signInSuccess'), 'success')
       navigate(redirectTo, { replace: true })
     } catch (error) {
-      setFormError(error instanceof Error ? error.message : 'Не удалось войти')
+      const raw = error instanceof Error ? error.message : ''
+      setFormError(
+        raw.startsWith('auth.errors.')
+          ? t(raw)
+          : raw || t('auth.errors.unknown'),
+      )
     }
   }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
       <div className="w-full max-w-sm">
+        <div className="mb-4 flex justify-center">
+          <LanguageSwitcher />
+        </div>
+
         <div className="mb-6 text-center">
-          <p className="text-sm font-medium text-slate-500">
-            Personal Finance Tracker
-          </p>
+          <p className="text-sm font-medium text-slate-500">{t('app.name')}</p>
           <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
-            С возвращением
+            {t('auth.welcomeBack')}
           </h1>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Вход в аккаунт</CardTitle>
-            <CardDescription>
-              Введите email и пароль, которые указывали при регистрации.
-            </CardDescription>
+            <CardTitle>{t('auth.loginTitle')}</CardTitle>
+            <CardDescription>{t('auth.loginDescription')}</CardDescription>
           </CardHeader>
 
           <CardContent>
@@ -87,43 +97,45 @@ export function Login() {
               noValidate
             >
               {formError ? (
-                <Alert variant="danger" title="Не удалось войти">
+                <Alert variant="danger" title={t('auth.loginFailed')}>
                   {formError}
                 </Alert>
               ) : null}
 
               <Input
-                label="Email"
+                label={t('auth.email')}
                 type="email"
                 autoComplete="email"
-                placeholder="you@example.com"
-                error={errors.email?.message}
+                placeholder={t('auth.emailPlaceholder')}
+                error={errors.email ? t(errors.email.message ?? '') : undefined}
                 {...register('email')}
               />
 
               <Input
-                label="Пароль"
+                label={t('auth.password')}
                 type="password"
                 autoComplete="current-password"
-                placeholder="Ваш пароль"
-                error={errors.password?.message}
+                placeholder={t('auth.passwordPlaceholder')}
+                error={
+                  errors.password ? t(errors.password.message ?? '') : undefined
+                }
                 {...register('password')}
               />
 
               <Button type="submit" fullWidth isLoading={isSubmitting}>
-                Войти
+                {t('auth.signIn')}
               </Button>
             </form>
           </CardContent>
         </Card>
 
         <p className="mt-4 text-center text-sm text-slate-600">
-          Нет аккаунта?{' '}
+          {t('auth.noAccount')}{' '}
           <Link
             to="/register"
             className="font-medium text-blue-600 transition-colors hover:text-blue-700"
           >
-            Зарегистрироваться
+            {t('auth.registerLink')}
           </Link>
         </p>
       </div>

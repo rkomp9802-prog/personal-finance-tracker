@@ -32,16 +32,16 @@ export function useAuth(): AuthContextValue {
   return context
 }
 
-// Переводим технические сообщения Supabase на человеческий русский.
-function translateAuthError(message: string): string {
+// Превращаем техническое сообщение Supabase в ключ перевода.
+// Сам текст подставится на странице, на выбранном языке.
+function toErrorKey(message: string): string {
   const dictionary: Record<string, string> = {
-    'Invalid login credentials': 'Неверный email или пароль',
-    'Email not confirmed': 'Email не подтверждён. Проверьте почту',
-    'User already registered': 'Пользователь с таким email уже существует',
-    'Password should be at least 6 characters':
-      'Пароль должен быть не короче 6 символов',
+    'Invalid login credentials': 'auth.errors.invalidCredentials',
+    'Email not confirmed': 'auth.errors.emailNotConfirmed',
+    'User already registered': 'auth.errors.userExists',
+    'Password should be at least 6 characters': 'auth.errors.weakPassword',
     'Unable to validate email address: invalid format':
-      'Некорректный формат email',
+      'auth.errors.invalidEmail',
   }
 
   return dictionary[message] ?? message
@@ -87,7 +87,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       })
 
       if (error) {
-        throw new Error(translateAuthError(error.message))
+        throw new Error(toErrorKey(error.message))
       }
     },
     [],
@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })
 
     if (error) {
-      throw new Error(translateAuthError(error.message))
+      throw new Error(toErrorKey(error.message))
     }
   }, [])
 
@@ -108,7 +108,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const { error } = await supabase.auth.signOut()
 
     if (error) {
-      throw new Error(translateAuthError(error.message))
+      throw new Error(toErrorKey(error.message))
     }
   }, [])
 
