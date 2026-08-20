@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Alert } from '@/components/ui/Alert'
 import { Button } from '@/components/ui/Button'
 import {
@@ -8,18 +8,45 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
-import { Skeleton } from '@/components/ui/Skeleton'
 import { useToast } from '@/components/ui/Toast'
+import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { useAuth } from '@/context/AuthContext'
 
-function App() {
-  const { user, session, isLoading, signOut } = useAuth()
+// Временная заглушка вместо страницы входа. Настоящая будет на шаге 3.3.
+function TemporaryLoginScreen() {
+  const location = useLocation()
+  const from = location.state as string | null
+
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-6">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Вход</CardTitle>
+          <CardDescription>
+            Временный экран. Настоящая форма появится на шаге 3.3.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-3">
+          <Alert title="Охранник сработал">
+            Вы не вошли в систему, поэтому доступ к закрытой странице закрыт.
+          </Alert>
+          {from ? (
+            <p className="text-sm text-slate-500">
+              Вы пытались открыть: <span className="text-slate-900">{from}</span>
+            </p>
+          ) : null}
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+// Временная заглушка вместо главной страницы. Настоящая будет на Этапе 9.
+function TemporaryDashboard() {
+  const { user, signOut } = useAuth()
   const { showToast } = useToast()
-  const [isSigningOut, setIsSigningOut] = useState(false)
 
   async function handleSignOut() {
-    setIsSigningOut(true)
-
     try {
       await signOut()
       showToast('Вы вышли из аккаунта', 'success')
@@ -28,74 +55,46 @@ function App() {
         error instanceof Error ? error.message : 'Не удалось выйти',
         'error',
       )
-    } finally {
-      setIsSigningOut(false)
     }
   }
 
   return (
     <div className="min-h-screen bg-slate-50 p-6">
       <div className="mx-auto flex w-full max-w-xl flex-col gap-6">
-        <div>
-          <p className="text-sm font-medium text-slate-500">
-            Personal Finance Tracker
-          </p>
-          <h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900">
-            Состояние авторизации
-          </h1>
-        </div>
-
         <Card>
           <CardHeader>
-            <CardTitle>Кто сейчас в системе</CardTitle>
+            <CardTitle>Закрытая страница</CardTitle>
             <CardDescription>
-              Эти данные приходят из AuthContext и обновляются сами.
+              Сюда попадают только вошедшие пользователи.
             </CardDescription>
           </CardHeader>
-
           <CardContent className="flex flex-col gap-4">
-            {isLoading ? (
-              <div className="flex flex-col gap-2">
-                <Skeleton className="h-4 w-48" />
-                <Skeleton className="h-4 w-32" />
-              </div>
-            ) : user ? (
-              <>
-                <Alert variant="success" title="Вход выполнен">
-                  {user.email}
-                </Alert>
-                <dl className="grid grid-cols-3 gap-2 text-sm">
-                  <dt className="text-slate-500">Идентификатор</dt>
-                  <dd className="col-span-2 break-all text-slate-900">
-                    {user.id}
-                  </dd>
-                  <dt className="text-slate-500">Пропуск истекает</dt>
-                  <dd className="col-span-2 text-slate-900">
-                    {session?.expires_at
-                      ? new Date(session.expires_at * 1000).toLocaleString(
-                          'ru-RU',
-                        )
-                      : 'неизвестно'}
-                  </dd>
-                </dl>
-                <Button
-                  variant="secondary"
-                  isLoading={isSigningOut}
-                  onClick={handleSignOut}
-                >
-                  Выйти из аккаунта
-                </Button>
-              </>
-            ) : (
-              <Alert title="Вы не вошли">
-                Активной сессии нет. Страницы входа и регистрации появятся на
-                шаге 3.3 — тогда это окно покажет ваши данные.
-              </Alert>
-            )}
+            <Alert variant="success" title="Доступ разрешён">
+              {user?.email}
+            </Alert>
+            <Button variant="secondary" onClick={handleSignOut}>
+              Выйти из аккаунта
+            </Button>
           </CardContent>
         </Card>
       </div>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<TemporaryLoginScreen />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<TemporaryDashboard />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
