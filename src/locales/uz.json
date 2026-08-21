@@ -66,7 +66,39 @@
     "passwordRequired": "Parol kiriting",
     "passwordMin": "Parol kamida 6 ta belgidan iborat bo'lishi kerak",
     "confirmRequired": "Parolni takrorlang",
-    "passwordsMismatch": "Parollar mos kelmadi"
+    "passwordsMismatch": "Parollar mos kelmadi",
+    "amountRequired": "Summani kiriting",
+    "amountPositive": "Summa noldan katta bo'lishi kerak",
+    "categoryRequired": "Kategoriyani tanlang",
+    "dateRequired": "Sanani tanlang"
+  },
+  "income": {
+    "formTitle": "Yangi daromad",
+    "editTitle": "Daromadni tahrirlash",
+    "amount": "Summa",
+    "amountPlaceholder": "0",
+    "amountHint": "So'mda",
+    "category": "Kategoriya",
+    "categoryPlaceholder": "Kategoriyani tanlang",
+    "source": "Manba",
+    "sourcePlaceholder": "Masalan: Acme MChJ",
+    "date": "Sana",
+    "note": "Izoh",
+    "notePlaceholder": "Ixtiyoriy",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "created": "Daromad qo'shildi",
+    "createError": "Daromadni saqlab bo'lmadi",
+    "categories": {
+      "salary": "Oylik",
+      "advance": "Avans",
+      "bonus": "Mukofot",
+      "sideJob": "Qo'shimcha ish",
+      "sale": "Buyum sotish",
+      "gift": "Sovg'a",
+      "investment": "Investitsiya daromadi",
+      "other": "Boshqa"
+    }
   },
   "pages": {
     "placeholder": "Bo'lim ishlanmoqda. Haqiqiy sahifa {{stage}}-bosqichda paydo bo'ladi.",

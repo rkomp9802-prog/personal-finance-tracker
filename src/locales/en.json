@@ -66,7 +66,39 @@
     "passwordRequired": "Enter your password",
     "passwordMin": "Password must be at least 6 characters",
     "confirmRequired": "Repeat the password",
-    "passwordsMismatch": "Passwords do not match"
+    "passwordsMismatch": "Passwords do not match",
+    "amountRequired": "Enter an amount",
+    "amountPositive": "Amount must be greater than zero",
+    "categoryRequired": "Choose a category",
+    "dateRequired": "Pick a date"
+  },
+  "income": {
+    "formTitle": "New income",
+    "editTitle": "Edit income",
+    "amount": "Amount",
+    "amountPlaceholder": "0",
+    "amountHint": "In UZS",
+    "category": "Category",
+    "categoryPlaceholder": "Choose a category",
+    "source": "Source",
+    "sourcePlaceholder": "e.g. Acme LLC",
+    "date": "Date",
+    "note": "Comment",
+    "notePlaceholder": "Optional",
+    "save": "Save",
+    "cancel": "Cancel",
+    "created": "Income added",
+    "createError": "Could not save the income",
+    "categories": {
+      "salary": "Salary",
+      "advance": "Advance",
+      "bonus": "Bonus",
+      "sideJob": "Side job",
+      "sale": "Selling items",
+      "gift": "Gift",
+      "investment": "Investment income",
+      "other": "Other"
+    }
   },
   "pages": {
     "placeholder": "Section under construction. The real page arrives at stage {{stage}}.",

@@ -66,7 +66,39 @@
     "passwordRequired": "Введите пароль",
     "passwordMin": "Пароль должен быть не короче 6 символов",
     "confirmRequired": "Повторите пароль",
-    "passwordsMismatch": "Пароли не совпадают"
+    "passwordsMismatch": "Пароли не совпадают",
+    "amountRequired": "Введите сумму",
+    "amountPositive": "Сумма должна быть больше нуля",
+    "categoryRequired": "Выберите категорию",
+    "dateRequired": "Укажите дату"
+  },
+  "income": {
+    "formTitle": "Новый доход",
+    "editTitle": "Изменить доход",
+    "amount": "Сумма",
+    "amountPlaceholder": "0",
+    "amountHint": "В сумах",
+    "category": "Категория",
+    "categoryPlaceholder": "Выберите категорию",
+    "source": "Источник",
+    "sourcePlaceholder": "Например: ООО «Ромашка»",
+    "date": "Дата",
+    "note": "Комментарий",
+    "notePlaceholder": "Необязательно",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "created": "Доход добавлен",
+    "createError": "Не удалось сохранить доход",
+    "categories": {
+      "salary": "Зарплата",
+      "advance": "Аванс",
+      "bonus": "Премия",
+      "sideJob": "Подработка",
+      "sale": "Продажа вещей",
+      "gift": "Подарок",
+      "investment": "Инвестиционный доход",
+      "other": "Другое"
+    }
   },
   "pages": {
     "placeholder": "Раздел в разработке. Настоящая страница появится на этапе {{stage}}.",
