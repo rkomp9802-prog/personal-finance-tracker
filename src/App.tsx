@@ -7,15 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
-import { useToast } from '@/components/ui/Toast'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
-import { ExpenseForm } from '@/components/common/ExpenseForm'
 import { MainLayout } from '@/components/layout/MainLayout'
+import { Expenses } from '@/pages/Expenses'
 import { Incomes } from '@/pages/Incomes'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
-import { createExpense } from '@/services/expenseService'
-import type { ExpenseInput } from '@/types/expense'
 
 const placeholderRoutes = [
   { path: '/', titleKey: 'nav.dashboard', descriptionKey: 'pages.dashboard', stage: '9' },
@@ -54,40 +51,6 @@ function PlaceholderPage({
   )
 }
 
-// Временный экран для проверки формы. Настоящая страница — на шаге 6.3.
-function ExpenseFormPreview() {
-  const { t } = useTranslation()
-  const { showToast } = useToast()
-
-  async function handleSubmit(input: ExpenseInput): Promise<boolean> {
-    try {
-      await createExpense(input)
-      showToast(t('expense.created'), 'success')
-      return true
-    } catch (error) {
-      showToast(
-        error instanceof Error ? error.message : t('expense.createError'),
-        'error',
-      )
-      return false
-    }
-  }
-
-  return (
-    <div className="mx-auto w-full max-w-2xl">
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('expense.formTitle')}</CardTitle>
-          <CardDescription>{t('pages.expenses')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ExpenseForm onSubmit={handleSubmit} />
-        </CardContent>
-      </Card>
-    </div>
-  )
-}
-
 function App() {
   return (
     <BrowserRouter>
@@ -98,7 +61,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
             <Route path="/incomes" element={<Incomes />} />
-            <Route path="/expenses" element={<ExpenseFormPreview />} />
+            <Route path="/expenses" element={<Expenses />} />
 
             {placeholderRoutes.map((route) => (
               <Route
