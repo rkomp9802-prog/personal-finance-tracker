@@ -8,12 +8,20 @@ export type SelectOption = {
   label: string
 }
 
+export type SelectOptionGroup = {
+  label: string
+  options: SelectOption[]
+}
+
 type SelectProps = ComponentPropsWithRef<'select'> & {
   label?: string
   hint?: string
   error?: string
   placeholder?: string
-  options: SelectOption[]
+  // Плоский список вариантов…
+  options?: SelectOption[]
+  // …или варианты, разбитые на группы с подписями.
+  groups?: SelectOptionGroup[]
 }
 
 export function Select({
@@ -23,6 +31,7 @@ export function Select({
   error,
   placeholder,
   options,
+  groups,
   id,
   ...props
 }: SelectProps) {
@@ -55,11 +64,23 @@ export function Select({
         >
           {placeholder ? <option value="">{placeholder}</option> : null}
 
-          {options.map((option) => (
+          {options?.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}
+
+          {groups?.map((group) =>
+            group.options.length > 0 ? (
+              <optgroup key={group.label} label={group.label}>
+                {group.options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </optgroup>
+            ) : null,
+          )}
         </select>
 
         <ChevronDown
