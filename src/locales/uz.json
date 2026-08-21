@@ -89,26 +89,34 @@
     "cancel": "Bekor qilish",
     "created": "Daromad qo'shildi",
     "createError": "Daromadni saqlab bo'lmadi",
+    "addButton": "Daromad qo'shish",
+    "listTitle": "Barcha daromadlar",
+    "empty": "Hozircha daromadlar yo'q",
+    "emptyHint": "Birinchi tushumni yozish uchun “Daromad qo'shish” tugmasini bosing.",
+    "totalLabel": "Jami tushum",
+    "countLabel": "Yozuvlar: {{count}}",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish",
+    "confirmDelete": "Yozuv o'chirilsinmi?",
+    "confirmYes": "Ha, o'chirish",
+    "confirmNo": "Bekor qilish",
+    "updated": "Daromad o'zgartirildi",
+    "deleted": "Daromad o'chirildi",
+    "updateError": "Daromadni o'zgartirib bo'lmadi",
+    "deleteError": "Daromadni o'chirib bo'lmadi",
+    "loadError": "Daromadlarni yuklab bo'lmadi",
+    "columns": {
+      "date": "Sana",
+      "category": "Kategoriya",
+      "source": "Manba",
+      "note": "Izoh",
+      "amount": "Summa",
+      "actions": "Amallar"
+    },
     "categories": {
       "salary": "Oylik",
       "advance": "Avans",
       "bonus": "Mukofot",
       "sideJob": "Qo'shimcha ish",
       "sale": "Buyum sotish",
-      "gift": "Sovg'a",
-      "investment": "Investitsiya daromadi",
-      "other": "Boshqa"
-    }
-  },
-  "pages": {
-    "placeholder": "Bo'lim ishlanmoqda. Haqiqiy sahifa {{stage}}-bosqichda paydo bo'ladi.",
-    "dashboard": "Moliyaviy holatingiz sharhi",
-    "incomes": "Daromadlar hisobi",
-    "expenses": "Kategoriyalar bo'yicha xarajatlar",
-    "budgets": "Kategoriya limitlari",
-    "goals": "Jamg'armalar va muddatlar",
-    "calendar": "Kunlar bo'yicha to'lovlar va daromadlar",
-    "statistics": "Grafiklar va xarajatlar tahlili",
-    "profile": "Shaxsiy ma'lumotlar va sozlamalar"
-  }
-}
+      "gift":

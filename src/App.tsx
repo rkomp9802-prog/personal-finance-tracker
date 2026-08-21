@@ -7,14 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
-import { useToast } from '@/components/ui/Toast'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
-import { IncomeForm } from '@/components/common/IncomeForm'
 import { MainLayout } from '@/components/layout/MainLayout'
+import { Incomes } from '@/pages/Incomes'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
-import { createIncome } from '@/services/incomeService'
-import type { IncomeInput } from '@/types/income'
 
 // Разделы, у которых настоящей страницы ещё нет.
 const placeholderRoutes = [
@@ -55,40 +52,6 @@ function PlaceholderPage({
   )
 }
 
-// Временный экран для проверки формы. Настоящая страница — на шаге 5.3.
-function IncomeFormPreview() {
-  const { t } = useTranslation()
-  const { showToast } = useToast()
-
-  async function handleSubmit(input: IncomeInput): Promise<boolean> {
-    try {
-      await createIncome(input)
-      showToast(t('income.created'), 'success')
-      return true
-    } catch (error) {
-      showToast(
-        error instanceof Error ? error.message : t('income.createError'),
-        'error',
-      )
-      return false
-    }
-  }
-
-  return (
-    <div className="mx-auto w-full max-w-2xl">
-      <Card>
-        <CardHeader>
-          <CardTitle>{t('income.formTitle')}</CardTitle>
-          <CardDescription>{t('pages.incomes')}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <IncomeForm onSubmit={handleSubmit} />
-        </CardContent>
-      </Card>
-    </div>
-  )
-}
-
 function App() {
   return (
     <BrowserRouter>
@@ -98,7 +61,7 @@ function App() {
 
         <Route element={<ProtectedRoute />}>
           <Route element={<MainLayout />}>
-            <Route path="/incomes" element={<IncomeFormPreview />} />
+            <Route path="/incomes" element={<Incomes />} />
 
             {placeholderRoutes.map((route) => (
               <Route
