@@ -1,4 +1,21 @@
 {
+    "goalList": {
+    "editHint": "Нажмите на карточку, чтобы пополнить или изменить",
+    "editSection": "Изменить цель",
+    "delete": "Удалить цель",
+    "confirmDelete": "Удалить цель?",
+    "confirmYes": "Да, удалить",
+    "confirmNo": "Отмена",
+    "deleteWarning": "Накопленная сумма исчезнет вместе с целью.",
+    "updated": "Цель изменена",
+    "deleted": "Цель удалена",
+    "updateError": "Не удалось изменить цель",
+    "deleteError": "Не удалось удалить цель",
+    "totalTarget": "Всего нужно",
+    "totalSaved": "Накоплено",
+    "reachedCount": "Достигнуто целей: {{count}}",
+    "noneReached": "Пока ни одна цель не достигнута"
+  },
     "goal": {
     "addButton": "Добавить цель",
     "formTitle": "Новая цель",

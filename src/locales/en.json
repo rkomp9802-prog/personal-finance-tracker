@@ -1,4 +1,21 @@
 {
+    "goalList": {
+    "editHint": "Click a card to top up or edit it",
+    "editSection": "Edit goal",
+    "delete": "Delete goal",
+    "confirmDelete": "Delete this goal?",
+    "confirmYes": "Yes, delete",
+    "confirmNo": "Cancel",
+    "deleteWarning": "The saved amount disappears together with the goal.",
+    "updated": "Goal updated",
+    "deleted": "Goal deleted",
+    "updateError": "Could not update the goal",
+    "deleteError": "Could not delete the goal",
+    "totalTarget": "Total needed",
+    "totalSaved": "Saved",
+    "reachedCount": "Goals reached: {{count}}",
+    "noneReached": "No goals reached yet"
+  },
     "goal": {
     "addButton": "Add goal",
     "formTitle": "New goal",

@@ -1,4 +1,21 @@
 {
+    "goalList": {
+    "editHint": "To'ldirish yoki tahrirlash uchun kartaga bosing",
+    "editSection": "Maqsadni tahrirlash",
+    "delete": "Maqsadni o'chirish",
+    "confirmDelete": "Maqsad o'chirilsinmi?",
+    "confirmYes": "Ha, o'chirish",
+    "confirmNo": "Bekor qilish",
+    "deleteWarning": "Yig'ilgan summa maqsad bilan birga yo'qoladi.",
+    "updated": "Maqsad o'zgartirildi",
+    "deleted": "Maqsad o'chirildi",
+    "updateError": "Maqsadni o'zgartirib bo'lmadi",
+    "deleteError": "Maqsadni o'chirib bo'lmadi",
+    "totalTarget": "Jami kerak",
+    "totalSaved": "Yig'ilgan",
+    "reachedCount": "Erishilgan maqsadlar: {{count}}",
+    "noneReached": "Hozircha birorta maqsadga erishilmagan"
+  },
     "goal": {
     "addButton": "Maqsad qo'shish",
     "formTitle": "Yangi maqsad",
