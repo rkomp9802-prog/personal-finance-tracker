@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/Card'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { MainLayout } from '@/components/layout/MainLayout'
+import { Budgets } from '@/pages/Budgets'
 import { Expenses } from '@/pages/Expenses'
 import { Incomes } from '@/pages/Incomes'
 import { Login } from '@/pages/Login'
@@ -16,7 +17,6 @@ import { Register } from '@/pages/Register'
 
 const placeholderRoutes = [
   { path: '/', titleKey: 'nav.dashboard', descriptionKey: 'pages.dashboard', stage: '9' },
-  { path: '/budgets', titleKey: 'nav.budgets', descriptionKey: 'pages.budgets', stage: '7' },
   { path: '/goals', titleKey: 'nav.goals', descriptionKey: 'pages.goals', stage: '8' },
   { path: '/calendar', titleKey: 'nav.calendar', descriptionKey: 'pages.calendar', stage: '11' },
   { path: '/statistics', titleKey: 'nav.statistics', descriptionKey: 'pages.statistics', stage: '10' },
@@ -62,6 +62,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/incomes" element={<Incomes />} />
             <Route path="/expenses" element={<Expenses />} />
+            <Route path="/budgets" element={<Budgets />} />
 
             {placeholderRoutes.map((route) => (
               <Route

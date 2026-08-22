@@ -1,4 +1,48 @@
 {
+    "budgetList": {
+    "editHint": "Click a card to change its limit",
+    "delete": "Delete limit",
+    "confirmDelete": "Delete this limit?",
+    "confirmYes": "Yes, delete",
+    "confirmNo": "Cancel",
+    "deleteWarning": "Expenses in this category will stay.",
+    "updated": "Limit updated",
+    "deleted": "Limit deleted",
+    "updateError": "Could not update the limit",
+    "deleteError": "Could not delete the limit",
+    "totalLimit": "Total limit",
+    "totalSpent": "Spent",
+    "overCount": "Categories over limit: {{count}}",
+    "allWithinLimits": "All categories are within their limits"
+  },
+    "entityCard": {
+    "remaining": "left",
+    "overLimit": "over limit",
+    "goalReached": "Goal reached",
+    "until": "by"
+  },
+  "budget": {
+    "addButton": "Add limit",
+    "formTitle": "New limit",
+    "editTitle": "Edit limit",
+    "listTitle": "Category limits",
+    "category": "Category",
+    "categoryPlaceholder": "Choose a category",
+    "categoryGroupBase": "Standard categories",
+    "categoryGroupCustom": "My categories",
+    "limit": "Limit",
+    "limitPlaceholder": "0",
+    "limitHint": "In UZS",
+    "save": "Save",
+    "cancel": "Cancel",
+    "created": "Limit added",
+    "createError": "Could not save the limit",
+    "categoryExists": "This category already has a limit",
+    "empty": "No limits set yet",
+    "emptyHint": "Set a limit for a category to keep spending in check.",
+    "loadError": "Could not load limits",
+    "countLabel": "Limits: {{count}}"
+  },
     "categoryManager": {
     "toggle": "My categories",
     "title": "My categories",

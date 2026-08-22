@@ -1,4 +1,48 @@
 {
+    "budgetList": {
+    "editHint": "Limitni o'zgartirish uchun kartaga bosing",
+    "delete": "Limitni o'chirish",
+    "confirmDelete": "Limit o'chirilsinmi?",
+    "confirmYes": "Ha, o'chirish",
+    "confirmNo": "Bekor qilish",
+    "deleteWarning": "Bu kategoriyadagi xarajatlar saqlanib qoladi.",
+    "updated": "Limit o'zgartirildi",
+    "deleted": "Limit o'chirildi",
+    "updateError": "Limitni o'zgartirib bo'lmadi",
+    "deleteError": "Limitni o'chirib bo'lmadi",
+    "totalLimit": "Umumiy limit",
+    "totalSpent": "Sarflandi",
+    "overCount": "Limitdan oshgan kategoriyalar: {{count}}",
+    "allWithinLimits": "Barcha kategoriyalar limit doirasida"
+  },
+    "entityCard": {
+    "remaining": "qoldi",
+    "overLimit": "limitdan ortiq",
+    "goalReached": "Maqsadga erishildi",
+    "until": "gacha"
+  },
+  "budget": {
+    "addButton": "Limit qo'shish",
+    "formTitle": "Yangi limit",
+    "editTitle": "Limitni tahrirlash",
+    "listTitle": "Kategoriya limitlari",
+    "category": "Kategoriya",
+    "categoryPlaceholder": "Kategoriyani tanlang",
+    "categoryGroupBase": "Asosiy kategoriyalar",
+    "categoryGroupCustom": "Mening kategoriyalarim",
+    "limit": "Limit",
+    "limitPlaceholder": "0",
+    "limitHint": "So'mda",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "created": "Limit qo'shildi",
+    "createError": "Limitni saqlab bo'lmadi",
+    "categoryExists": "Bu kategoriya uchun limit allaqachon belgilangan",
+    "empty": "Hozircha limitlar belgilanmagan",
+    "emptyHint": "Xarajatlarni nazorat qilish uchun kategoriyaga limit qo'ying.",
+    "loadError": "Limitlarni yuklab bo'lmadi",
+    "countLabel": "Limitlar: {{count}}"
+  },
     "categoryManager": {
     "toggle": "Mening kategoriyalarim",
     "title": "Mening kategoriyalarim",

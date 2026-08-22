@@ -1,4 +1,48 @@
 {
+    "budgetList": {
+    "editHint": "Нажмите на карточку, чтобы изменить лимит",
+    "delete": "Удалить лимит",
+    "confirmDelete": "Удалить лимит?",
+    "confirmYes": "Да, удалить",
+    "confirmNo": "Отмена",
+    "deleteWarning": "Расходы по этой категории останутся на месте.",
+    "updated": "Лимит изменён",
+    "deleted": "Лимит удалён",
+    "updateError": "Не удалось изменить лимит",
+    "deleteError": "Не удалось удалить лимит",
+    "totalLimit": "Общий лимит",
+    "totalSpent": "Потрачено",
+    "overCount": "Превышено категорий: {{count}}",
+    "allWithinLimits": "Все категории в пределах лимитов"
+  },
+    "entityCard": {
+    "remaining": "осталось",
+    "overLimit": "сверх лимита",
+    "goalReached": "Цель достигнута",
+    "until": "до"
+  },
+  "budget": {
+    "addButton": "Добавить лимит",
+    "formTitle": "Новый лимит",
+    "editTitle": "Изменить лимит",
+    "listTitle": "Лимиты по категориям",
+    "category": "Категория",
+    "categoryPlaceholder": "Выберите категорию",
+    "categoryGroupBase": "Базовые категории",
+    "categoryGroupCustom": "Мои категории",
+    "limit": "Лимит",
+    "limitPlaceholder": "0",
+    "limitHint": "В сумах",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "created": "Лимит добавлен",
+    "createError": "Не удалось сохранить лимит",
+    "categoryExists": "Для этой категории лимит уже задан",
+    "empty": "Лимиты пока не заданы",
+    "emptyHint": "Задайте лимит по категории, чтобы следить за тратами.",
+    "loadError": "Не удалось загрузить лимиты",
+    "countLabel": "Лимитов: {{count}}"
+  },
     "categoryManager": {
     "toggle": "Мои категории",
     "title": "Мои категории",

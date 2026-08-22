@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { TrendingDown, TrendingUp } from 'lucide-react'
 import { Card } from '@/components/ui/Card'
 import { cn } from '@/utils/cn'
@@ -102,6 +103,8 @@ function ProgressBar({
 }
 
 export function EntityCard(props: EntityCardProps) {
+  const { t } = useTranslation()
+
   if (props.variant === 'income' || props.variant === 'expense') {
     const sign = props.variant === 'income' ? '+' : '−'
     const source = props.variant === 'income' ? props.source : undefined
@@ -158,9 +161,9 @@ export function EntityCard(props: EntityCardProps) {
           tone={isOverLimit ? 'warning' : 'neutral'}
         />
 
-        <div className="mt-3 flex items-baseline justify-between gap-4 text-sm">
+        <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
           <p className="tabular-nums text-slate-500">
-            {formatMoney(props.spentAmount)} из {formatMoney(props.limitAmount)}
+            {formatMoney(props.spentAmount)} / {formatMoney(props.limitAmount)}
           </p>
           <p
             className={cn(
@@ -168,8 +171,9 @@ export function EntityCard(props: EntityCardProps) {
               isOverLimit ? 'text-amber-700' : 'text-slate-500',
             )}
           >
-            {isOverLimit ? 'сверх лимита ' : 'осталось '}
-            {formatMoney(difference)}
+            {isOverLimit
+              ? `${t('entityCard.overLimit')} ${formatMoney(difference)}`
+              : `${formatMoney(difference)} ${t('entityCard.remaining')}`}
           </p>
         </div>
       </Shell>
@@ -199,16 +203,18 @@ export function EntityCard(props: EntityCardProps) {
           tone={isReached ? 'success' : 'neutral'}
         />
 
-        <div className="mt-3 flex items-baseline justify-between gap-4 text-sm">
+        <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
           <p className="tabular-nums text-slate-500">
-            {formatMoney(props.currentAmount)} из{' '}
+            {formatMoney(props.currentAmount)} /{' '}
             {formatMoney(props.targetAmount)}
           </p>
           {isReached ? (
-            <p className="shrink-0 text-emerald-700">Цель достигнута</p>
+            <p className="shrink-0 text-emerald-700">
+              {t('entityCard.goalReached')}
+            </p>
           ) : props.deadline ? (
             <p className="shrink-0 text-slate-400">
-              до {formatDate(props.deadline)}
+              {t('entityCard.until')} {formatDate(props.deadline)}
             </p>
           ) : null}
         </div>
