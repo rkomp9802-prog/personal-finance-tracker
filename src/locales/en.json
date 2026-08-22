@@ -1,4 +1,14 @@
 {
+    "dashboard": {
+    "balance": "Current balance",
+    "balanceHint": "All income minus all expenses",
+    "incomeMonth": "Income this month",
+    "expenseMonth": "Expenses this month",
+    "savings": "Saved towards goals",
+    "loadError": "Could not load your data",
+    "positiveBalance": "Income exceeds expenses",
+    "negativeBalance": "Expenses exceed income"
+  },
     "goalList": {
     "editHint": "Click a card to top up or edit it",
     "editSection": "Edit goal",

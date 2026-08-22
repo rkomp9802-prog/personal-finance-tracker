@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TrendingDown, TrendingUp } from 'lucide-react'
 import { Card } from '@/components/ui/Card'
+import { AnimatedNumber } from '@/components/common/AnimatedNumber'
 import { cn } from '@/utils/cn'
 import { clampPercent, formatDate, formatMoney } from '@/utils/format'
 
@@ -228,8 +229,8 @@ export function EntityCard(props: EntityCardProps) {
     <Shell className={props.className} onClick={props.onClick}>
       <p className="text-sm font-medium text-slate-500">{props.label}</p>
 
-      <p className="mt-2 text-3xl font-semibold tracking-tight tabular-nums text-slate-900">
-        {formatMoney(props.value)}
+      <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums text-slate-900">
+        <AnimatedNumber value={props.value} format={formatMoney} />
       </p>
 
       {props.trend && props.trendLabel ? (

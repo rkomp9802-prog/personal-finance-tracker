@@ -1,4 +1,14 @@
 {
+    "dashboard": {
+    "balance": "Joriy balans",
+    "balanceHint": "Barcha daromadlar minus barcha xarajatlar",
+    "incomeMonth": "Shu oydagi daromad",
+    "expenseMonth": "Shu oydagi xarajat",
+    "savings": "Maqsadlarga yig'ilgan",
+    "loadError": "Ma'lumotlarni yuklab bo'lmadi",
+    "positiveBalance": "Daromad xarajatdan ko'p",
+    "negativeBalance": "Xarajat daromaddan oshdi"
+  },
     "goalList": {
     "editHint": "To'ldirish yoki tahrirlash uchun kartaga bosing",
     "editSection": "Maqsadni tahrirlash",
