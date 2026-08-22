@@ -1,4 +1,16 @@
 {
+    "widgets": {
+    "recentTitle": "Recent activity",
+    "recentEmpty": "No activity yet",
+    "recentHint": "Add income or an expense — it will show up here.",
+    "upcomingTitle": "Upcoming payments",
+    "upcomingEmpty": "Nothing coming up",
+    "upcomingHint": "Future-dated entries and goal deadlines appear here automatically.",
+    "goalDeadline": "Goal deadline",
+    "today": "today",
+    "tomorrow": "tomorrow",
+    "inDays": "in {{count}} days"
+  },
     "dashboard": {
     "balance": "Current balance",
     "balanceHint": "All income minus all expenses",

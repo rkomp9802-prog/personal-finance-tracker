@@ -10,7 +10,9 @@ import {
 } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
+import { RecentOperations } from '@/components/common/RecentOperations'
 import { SummaryCards } from '@/components/common/SummaryCards'
+import { UpcomingPayments } from '@/components/common/UpcomingPayments'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { useFinanceSummary } from '@/hooks/useFinanceSummary'
 import { Budgets } from '@/pages/Budgets'
@@ -57,7 +59,8 @@ function PlaceholderPage({
 // Временный экран для проверки. Настоящая главная — на шаге 9.3.
 function DashboardPreview() {
   const { t } = useTranslation()
-  const { summary, isPending, isError } = useFinanceSummary()
+  const { summary, incomes, expenses, goals, isPending, isError } =
+    useFinanceSummary()
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
@@ -76,11 +79,38 @@ function DashboardPreview() {
             <Skeleton className="h-24 w-full rounded-2xl" />
             <Skeleton className="h-24 w-full rounded-2xl" />
           </div>
+          <Skeleton className="h-56 w-full rounded-2xl" />
         </div>
       ) : isError ? (
         <Alert variant="danger" title={t('dashboard.loadError')} />
       ) : (
-        <SummaryCards summary={summary} />
+        <>
+          <SummaryCards summary={summary} />
+
+          <div className="grid gap-6 lg:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('widgets.recentTitle')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <RecentOperations incomes={incomes} expenses={expenses} />
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('widgets.upcomingTitle')}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <UpcomingPayments
+                  incomes={incomes}
+                  expenses={expenses}
+                  goals={goals}
+                />
+              </CardContent>
+            </Card>
+          </div>
+        </>
       )}
     </div>
   )

@@ -1,4 +1,16 @@
 {
+    "widgets": {
+    "recentTitle": "So'nggi amallar",
+    "recentEmpty": "Hozircha amallar yo'q",
+    "recentHint": "Daromad yoki xarajat qo'shing — u shu yerda ko'rinadi.",
+    "upcomingTitle": "Yaqin to'lovlar",
+    "upcomingEmpty": "Yaqin to'lovlar yo'q",
+    "upcomingHint": "Kelajak sanali yozuvlar va maqsad muddatlari shu yerda paydo bo'ladi.",
+    "goalDeadline": "Maqsad muddati",
+    "today": "bugun",
+    "tomorrow": "ertaga",
+    "inDays": "{{count}} kundan keyin"
+  },
     "dashboard": {
     "balance": "Joriy balans",
     "balanceHint": "Barcha daromadlar minus barcha xarajatlar",
