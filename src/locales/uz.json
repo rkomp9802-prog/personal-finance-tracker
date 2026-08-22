@@ -1,4 +1,25 @@
 {
+    "calendar": {
+    "previousMonth": "Oldingi oy",
+    "nextMonth": "Keyingi oy",
+    "today": "Bugun",
+    "monthIncome": "Shu oydagi daromad",
+    "monthExpense": "Shu oydagi xarajat",
+    "daySummary": "{{date}} kungi amallar",
+    "dayEmpty": "Bu kuni amallar bo'lmagan",
+    "selectDay": "Kalendarda kunni tanlang",
+    "loadError": "Kalendarni yuklab bo'lmadi"
+  },
+    "statsPage": {
+    "period": "Davr",
+    "months3": "3 oy",
+    "months6": "6 oy",
+    "months12": "12 oy",
+    "periodHint": "Quyidagi barcha raqamlar tanlangan davr uchun hisoblangan",
+    "avgIncome": "Oyiga o'rtacha daromad",
+    "avgExpense": "Oyiga o'rtacha xarajat",
+    "avgSaved": "O'rtacha qoladi"
+  },
     "statistics": {
     "byCategoryTitle": "Kategoriyalar bo'yicha xarajatlar",
     "byCategoryDescription": "Eng kattasi yuqorida",

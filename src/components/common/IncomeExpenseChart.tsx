@@ -16,11 +16,11 @@ import type { Income } from '@/types/income'
 // Пара цветов проверена валидатором: различимы и при дальтонизме.
 const INCOME_COLOR = '#2563eb'
 const EXPENSE_COLOR = '#d97706'
-const MONTHS_TO_SHOW = 6
 
 type IncomeExpenseChartProps = {
   incomes: Income[]
   expenses: Expense[]
+  monthsToShow?: number
 }
 
 type MonthPoint = {
@@ -49,6 +49,7 @@ function sumForMonth(
 export function IncomeExpenseChart({
   incomes,
   expenses,
+  monthsToShow = 6,
 }: IncomeExpenseChartProps) {
   const { t, i18n } = useTranslation()
   const language = i18n.resolvedLanguage ?? 'ru'
@@ -56,7 +57,7 @@ export function IncomeExpenseChart({
   const points: MonthPoint[] = []
   const now = new Date()
 
-  for (let offset = MONTHS_TO_SHOW - 1; offset >= 0; offset -= 1) {
+  for (let offset = monthsToShow - 1; offset >= 0; offset -= 1) {
     const date = new Date(now.getFullYear(), now.getMonth() - offset, 1)
     const month = String(date.getMonth() + 1).padStart(2, '0')
     const key = `${date.getFullYear()}-${month}`

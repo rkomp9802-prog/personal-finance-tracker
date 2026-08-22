@@ -1,4 +1,25 @@
 {
+    "calendar": {
+    "previousMonth": "Предыдущий месяц",
+    "nextMonth": "Следующий месяц",
+    "today": "Сегодня",
+    "monthIncome": "Доходы за месяц",
+    "monthExpense": "Расходы за месяц",
+    "daySummary": "Операции за {{date}}",
+    "dayEmpty": "В этот день операций не было",
+    "selectDay": "Выберите день в календаре",
+    "loadError": "Не удалось загрузить календарь"
+  },
+    "statsPage": {
+    "period": "Период",
+    "months3": "3 месяца",
+    "months6": "6 месяцев",
+    "months12": "12 месяцев",
+    "periodHint": "Все числа и графики ниже посчитаны за выбранный период",
+    "avgIncome": "Средний доход в месяц",
+    "avgExpense": "Средний расход в месяц",
+    "avgSaved": "В среднем остаётся"
+  },
     "statistics": {
     "byCategoryTitle": "Расходы по категориям",
     "byCategoryDescription": "Самые затратные сверху",

@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Alert } from '@/components/ui/Alert'
+import { Button } from '@/components/ui/Button'
 import {
   Card,
   CardContent,
@@ -9,8 +12,7 @@ import {
   CardTitle,
 } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
-import { CategoryBreakdownChart } from '@/components/common/CategoryBreakdownChart'
-import { IncomeExpenseChart } from '@/components/common/IncomeExpenseChart'
+import { MonthCalendar } from '@/components/common/MonthCalendar'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { useFinanceSummary } from '@/hooks/useFinanceSummary'
@@ -21,9 +23,9 @@ import { Goals } from '@/pages/Goals'
 import { Incomes } from '@/pages/Incomes'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
+import { Statistics } from '@/pages/Statistics'
 
 const placeholderRoutes = [
-  { path: '/calendar', titleKey: 'nav.calendar', descriptionKey: 'pages.calendar', stage: '11' },
   { path: '/profile', titleKey: 'nav.profile', descriptionKey: 'pages.profile', stage: '12' },
 ]
 
@@ -55,54 +57,80 @@ function PlaceholderPage({
   )
 }
 
-// Временный экран для проверки. Настоящая страница — на шаге 10.2.
-function StatisticsPreview() {
-  const { t } = useTranslation()
+// Временный экран для проверки. Настоящая страница — на шаге 11.2.
+function CalendarPreview() {
+  const { t, i18n } = useTranslation()
   const { incomes, expenses, isPending, isError } = useFinanceSummary()
+  const now = new Date()
+
+  const [year, setYear] = useState(now.getFullYear())
+  const [month, setMonth] = useState(now.getMonth())
+  const [selectedDate, setSelectedDate] = useState<string | null>(null)
+
+  function shiftMonth(step: number) {
+    const shifted = new Date(year, month + step, 1)
+
+    setYear(shifted.getFullYear())
+    setMonth(shifted.getMonth())
+  }
+
+  const monthTitle = new Intl.DateTimeFormat(i18n.resolvedLanguage ?? 'ru', {
+    month: 'long',
+    year: 'numeric',
+  }).format(new Date(year, month, 1))
 
   return (
     <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
-          {t('nav.statistics')}
+          {t('nav.calendar')}
         </h1>
-        <p className="mt-1 text-sm text-slate-600">{t('pages.statistics')}</p>
+        <p className="mt-1 text-sm text-slate-600">{t('pages.calendar')}</p>
       </div>
 
-      {isPending ? (
-        <div className="flex flex-col gap-6">
-          <Skeleton className="h-72 w-full rounded-2xl" />
-          <Skeleton className="h-80 w-full rounded-2xl" />
-        </div>
-      ) : isError ? (
-        <Alert variant="danger" title={t('statistics.loadError')} />
-      ) : (
-        <>
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('statistics.byCategoryTitle')}</CardTitle>
-              <CardDescription>
-                {t('statistics.byCategoryDescription')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <CategoryBreakdownChart expenses={expenses} />
-            </CardContent>
-          </Card>
+      <Card>
+        <CardHeader>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <CardTitle className="capitalize">{monthTitle}</CardTitle>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>{t('statistics.dynamicsTitle')}</CardTitle>
-              <CardDescription>
-                {t('statistics.dynamicsDescription')}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <IncomeExpenseChart incomes={incomes} expenses={expenses} />
-            </CardContent>
-          </Card>
-        </>
-      )}
+            <div className="flex items-center gap-2">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => shiftMonth(-1)}
+                title={t('calendar.previousMonth')}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => shiftMonth(1)}
+                title={t('calendar.nextMonth')}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </CardHeader>
+
+        <CardContent>
+          {isPending ? (
+            <Skeleton className="h-96 w-full rounded-2xl" />
+          ) : isError ? (
+            <Alert variant="danger" title={t('calendar.loadError')} />
+          ) : (
+            <MonthCalendar
+              year={year}
+              month={month}
+              incomes={incomes}
+              expenses={expenses}
+              selectedDate={selectedDate}
+              onSelectDate={setSelectedDate}
+            />
+          )}
+        </CardContent>
+      </Card>
     </div>
   )
 }
@@ -121,7 +149,8 @@ function App() {
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/budgets" element={<Budgets />} />
             <Route path="/goals" element={<Goals />} />
-            <Route path="/statistics" element={<StatisticsPreview />} />
+            <Route path="/statistics" element={<Statistics />} />
+            <Route path="/calendar" element={<CalendarPreview />} />
 
             {placeholderRoutes.map((route) => (
               <Route

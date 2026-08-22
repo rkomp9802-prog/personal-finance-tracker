@@ -80,7 +80,8 @@ export function CategoryBreakdownChart({
   }
 
   const top = visible[0]
-  const topPercent = grandTotal > 0 ? Math.round((top.total / grandTotal) * 100) : 0
+  const topPercent =
+    grandTotal > 0 ? Math.round((top.total / grandTotal) * 100) : 0
 
   return (
     <div className="flex flex-col gap-4">
@@ -133,7 +134,9 @@ export function CategoryBreakdownChart({
                 dataKey="total"
                 position="right"
                 offset={8}
-                formatter={(value: number) => formatCompact(value, language)}
+                formatter={(value: unknown) =>
+                  formatCompact(Number(value), language)
+                }
                 style={{ fill: '#64748b', fontSize: 12 }}
               />
             </Bar>

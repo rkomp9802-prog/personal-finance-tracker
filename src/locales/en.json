@@ -1,4 +1,25 @@
 {
+    "calendar": {
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "today": "Today",
+    "monthIncome": "Income this month",
+    "monthExpense": "Expenses this month",
+    "daySummary": "Activity on {{date}}",
+    "dayEmpty": "Nothing happened on this day",
+    "selectDay": "Pick a day in the calendar",
+    "loadError": "Could not load the calendar"
+  },
+    "statsPage": {
+    "period": "Period",
+    "months3": "3 months",
+    "months6": "6 months",
+    "months12": "12 months",
+    "periodHint": "Everything below is calculated for the selected period",
+    "avgIncome": "Average monthly income",
+    "avgExpense": "Average monthly spending",
+    "avgSaved": "Average left over"
+  },
     "statistics": {
     "byCategoryTitle": "Expenses by category",
     "byCategoryDescription": "Biggest first",
