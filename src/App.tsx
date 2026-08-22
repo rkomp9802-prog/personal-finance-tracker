@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { Alert } from '@/components/ui/Alert'
 import {
   Card,
   CardContent,
@@ -7,8 +8,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/Card'
+import { Skeleton } from '@/components/ui/Skeleton'
+import { CategoryBreakdownChart } from '@/components/common/CategoryBreakdownChart'
+import { IncomeExpenseChart } from '@/components/common/IncomeExpenseChart'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { MainLayout } from '@/components/layout/MainLayout'
+import { useFinanceSummary } from '@/hooks/useFinanceSummary'
 import { Budgets } from '@/pages/Budgets'
 import { Dashboard } from '@/pages/Dashboard'
 import { Expenses } from '@/pages/Expenses'
@@ -19,7 +24,6 @@ import { Register } from '@/pages/Register'
 
 const placeholderRoutes = [
   { path: '/calendar', titleKey: 'nav.calendar', descriptionKey: 'pages.calendar', stage: '11' },
-  { path: '/statistics', titleKey: 'nav.statistics', descriptionKey: 'pages.statistics', stage: '10' },
   { path: '/profile', titleKey: 'nav.profile', descriptionKey: 'pages.profile', stage: '12' },
 ]
 
@@ -51,6 +55,58 @@ function PlaceholderPage({
   )
 }
 
+// Временный экран для проверки. Настоящая страница — на шаге 10.2.
+function StatisticsPreview() {
+  const { t } = useTranslation()
+  const { incomes, expenses, isPending, isError } = useFinanceSummary()
+
+  return (
+    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+      <div>
+        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          {t('nav.statistics')}
+        </h1>
+        <p className="mt-1 text-sm text-slate-600">{t('pages.statistics')}</p>
+      </div>
+
+      {isPending ? (
+        <div className="flex flex-col gap-6">
+          <Skeleton className="h-72 w-full rounded-2xl" />
+          <Skeleton className="h-80 w-full rounded-2xl" />
+        </div>
+      ) : isError ? (
+        <Alert variant="danger" title={t('statistics.loadError')} />
+      ) : (
+        <>
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('statistics.byCategoryTitle')}</CardTitle>
+              <CardDescription>
+                {t('statistics.byCategoryDescription')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CategoryBreakdownChart expenses={expenses} />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('statistics.dynamicsTitle')}</CardTitle>
+              <CardDescription>
+                {t('statistics.dynamicsDescription')}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <IncomeExpenseChart incomes={incomes} expenses={expenses} />
+            </CardContent>
+          </Card>
+        </>
+      )}
+    </div>
+  )
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -65,6 +121,7 @@ function App() {
             <Route path="/expenses" element={<Expenses />} />
             <Route path="/budgets" element={<Budgets />} />
             <Route path="/goals" element={<Goals />} />
+            <Route path="/statistics" element={<StatisticsPreview />} />
 
             {placeholderRoutes.map((route) => (
               <Route

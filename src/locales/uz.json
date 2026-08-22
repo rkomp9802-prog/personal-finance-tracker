@@ -1,4 +1,17 @@
 {
+    "statistics": {
+    "byCategoryTitle": "Kategoriyalar bo'yicha xarajatlar",
+    "byCategoryDescription": "Eng kattasi yuqorida",
+    "dynamicsTitle": "Oylar bo'yicha daromad va xarajat",
+    "dynamicsDescription": "So'nggi olti oy",
+    "income": "Daromadlar",
+    "expense": "Xarajatlar",
+    "otherCategories": "Boshqa kategoriyalar",
+    "empty": "Hozircha ma'lumot yo'q",
+    "emptyHint": "Daromad va xarajat qo'shing — tahlil shu yerda paydo bo'ladi.",
+    "topCategory": "Eng ko'p mablag' “{{category}}” ga ketmoqda — barcha xarajatlarning {{percent}}%.",
+    "loadError": "Statistikani yuklab bo'lmadi"
+  },
     "chart": {
     "expensesTitle": "Oylar bo'yicha xarajatlar",
     "expensesDescription": "So'nggi olti oy",

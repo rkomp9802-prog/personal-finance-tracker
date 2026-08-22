@@ -1,4 +1,17 @@
 {
+    "statistics": {
+    "byCategoryTitle": "Expenses by category",
+    "byCategoryDescription": "Biggest first",
+    "dynamicsTitle": "Income and expenses by month",
+    "dynamicsDescription": "Last six months",
+    "income": "Income",
+    "expense": "Expenses",
+    "otherCategories": "Other categories",
+    "empty": "No data yet",
+    "emptyHint": "Add income and expenses — the breakdown appears here.",
+    "topCategory": "Most of your money goes to “{{category}}” — {{percent}}% of all spending.",
+    "loadError": "Could not load statistics"
+  },
     "chart": {
     "expensesTitle": "Expenses by month",
     "expensesDescription": "Last six months",

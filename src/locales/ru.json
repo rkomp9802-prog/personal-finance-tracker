@@ -1,4 +1,17 @@
 {
+    "statistics": {
+    "byCategoryTitle": "Расходы по категориям",
+    "byCategoryDescription": "Самые затратные сверху",
+    "dynamicsTitle": "Доходы и расходы по месяцам",
+    "dynamicsDescription": "Последние шесть месяцев",
+    "income": "Доходы",
+    "expense": "Расходы",
+    "otherCategories": "Другие категории",
+    "empty": "Пока нет данных",
+    "emptyHint": "Добавьте доходы и расходы — здесь появится разбор.",
+    "topCategory": "Больше всего уходит на «{{category}}» — {{percent}}% всех трат.",
+    "loadError": "Не удалось загрузить статистику"
+  },
     "chart": {
     "expensesTitle": "Расходы по месяцам",
     "expensesDescription": "Последние шесть месяцев",
