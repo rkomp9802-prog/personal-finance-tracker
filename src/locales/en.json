@@ -1,4 +1,14 @@
 {
+    "chart": {
+    "expensesTitle": "Expenses by month",
+    "expensesDescription": "Last six months",
+    "empty": "No expenses to chart yet",
+    "emptyHint": "Add a few expenses — the trend will show up here.",
+    "trendUp": "Expenses this month are {{percent}}% higher than last month.",
+    "trendDown": "Expenses this month are {{percent}}% lower than last month.",
+    "trendFlat": "Expenses are holding steady versus last month.",
+    "trendNoData": "Nothing to compare yet — you need at least one earlier month with expenses."
+  },
     "widgets": {
     "recentTitle": "Recent activity",
     "recentEmpty": "No activity yet",

@@ -1,4 +1,14 @@
 {
+    "chart": {
+    "expensesTitle": "Oylar bo'yicha xarajatlar",
+    "expensesDescription": "So'nggi olti oy",
+    "empty": "Grafik uchun xarajatlar yo'q",
+    "emptyHint": "Bir nechta xarajat qo'shing — dinamika shu yerda ko'rinadi.",
+    "trendUp": "Bu oydagi xarajatlar o'tgan oyga nisbatan {{percent}}% ko'p.",
+    "trendDown": "Bu oydagi xarajatlar o'tgan oyga nisbatan {{percent}}% kam.",
+    "trendFlat": "Xarajatlar o'tgan oy darajasida qolmoqda.",
+    "trendNoData": "Hozircha taqqoslash uchun ma'lumot yo'q — kamida bitta oldingi oy kerak."
+  },
     "widgets": {
     "recentTitle": "So'nggi amallar",
     "recentEmpty": "Hozircha amallar yo'q",
