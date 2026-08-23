@@ -1,4 +1,49 @@
 {
+    "error": {
+    "title": "Nimadir xato ketdi",
+    "description": "Ilovada kutilmagan xatolik yuz berdi. Sahifani yangilang — odatda bu yordam beradi.",
+    "reload": "Sahifani yangilash",
+    "details": "Texnik tafsilotlar"
+  },
+    "settings": {
+    "title": "Sozlamalar",
+    "description": "Tanlovingiz shu brauzerda saqlanadi",
+    "appearance": "Ko'rinish",
+    "appearanceHint": "Qorong'i mavzu kechqurun ko'zni qiynamaydi",
+    "language": "Interfeys tili",
+    "languageHint": "O'zingiz yozgan kategoriya va maqsad nomlari tarjima qilinmaydi"
+  },
+    "theme": {
+    "label": "Mavzu",
+    "light": "Yorug'",
+    "dark": "Qorong'i",
+    "toLight": "Yorug' mavzuni yoqish",
+    "toDark": "Qorong'i mavzuni yoqish"
+  },
+    "profile": {
+    "personalData": "Shaxsiy ma'lumotlar",
+    "personalDataHint": "Ismingiz ilova sarlavhasida ko'rinadi",
+    "name": "Ism",
+    "namePlaceholder": "Sizga qanday murojaat qilaylik",
+    "email": "Email",
+    "emailHint": "Email akkauntga bog'langan va bu yerda o'zgarmaydi",
+    "save": "Saqlash",
+    "saved": "Profil yangilandi",
+    "saveError": "Profilni saqlab bo'lmadi",
+    "avatar": "Avatar",
+    "avatarHint": "PNG yoki JPG, 2 MB gacha",
+    "upload": "Yuklash",
+    "change": "Almashtirish",
+    "remove": "Olib tashlash",
+    "avatarUploaded": "Avatar yangilandi",
+    "avatarRemoved": "Avatar olib tashlandi",
+    "avatarError": "Rasmni yuklab bo'lmadi",
+    "loadError": "Profilni yuklab bo'lmadi",
+    "errors": {
+      "notAnImage": "Bu rasm emas. PNG yoki JPG tanlang",
+      "tooLarge": "Fayl 2 MB dan katta. Kichikroq rasm tanlang"
+    }
+  },
     "calendar": {
     "previousMonth": "Oldingi oy",
     "nextMonth": "Keyingi oy",

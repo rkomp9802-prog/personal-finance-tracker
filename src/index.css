@@ -1,7 +1,54 @@
 @import "tailwindcss";
 
+/* Разрешаем приставку dark: — она сработает, когда на странице есть класс dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
 html,
 body,
 #root {
   height: 100%;
+}
+
+/* В тёмной теме переопределяем значения серой шкалы.
+   Все классы вроде text-slate-900 и border-slate-200
+   подхватывают новые значения сами, без правок в компонентах. */
+.dark {
+  --color-slate-50: #020617;
+  --color-slate-100: #1e293b;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #64748b;
+  --color-slate-500: #94a3b8;
+  --color-slate-600: #cbd5e1;
+  --color-slate-700: #e2e8f0;
+  --color-slate-800: #f1f5f9;
+  --color-slate-900: #f8fafc;
+
+  --color-blue-50: #172554;
+  --color-blue-100: #1e3a8a;
+  --color-blue-700: #bfdbfe;
+
+  --color-amber-50: #451a03;
+  --color-amber-700: #fbbf24;
+
+  --color-red-50: #450a0a;
+  --color-red-100: #7f1d1d;
+  --color-red-300: #7f1d1d;
+  --color-red-600: #fca5a5;
+
+  --color-emerald-50: #022c22;
+  --color-emerald-700: #34d399;
+
+  /* Подсказка браузеру: рисовать полосы прокрутки и системные поля тёмными */
+  color-scheme: dark;
+}
+
+/* bg-white во всём приложении означает «поверхность карточки» — она темнеет.
+   text-white означает «текст на синей кнопке» — его не трогаем. */
+.dark .bg-white {
+  background-color: #0f172a;
+}
+
+.dark .bg-white\/70 {
+  background-color: rgb(15 23 42 / 0.75);
 }

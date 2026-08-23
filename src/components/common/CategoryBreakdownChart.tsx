@@ -8,11 +8,11 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { useChartColors } from '@/hooks/useChartColors'
 import { isBaseExpenseCategory } from '@/types/expense'
 import { formatMoney } from '@/utils/format'
 import type { Expense } from '@/types/expense'
 
-const BAR_COLOR = '#2563eb'
 const MAX_CATEGORIES = 8
 const ROW_HEIGHT = 40
 
@@ -36,9 +36,9 @@ export function CategoryBreakdownChart({
   expenses,
 }: CategoryBreakdownChartProps) {
   const { t, i18n } = useTranslation()
+  const colors = useChartColors()
   const language = i18n.resolvedLanguage ?? 'ru'
 
-  // Складываем траты по категориям.
   const totals: Record<string, number> = {}
 
   for (const expense of expenses) {
@@ -53,7 +53,6 @@ export function CategoryBreakdownChart({
     .map(([label, total]) => ({ label, total }))
     .sort((first, second) => second.total - first.total)
 
-  // Всё, что не влезло в первую восьмёрку, складываем в одну строку.
   const visible = sorted.slice(0, MAX_CATEGORIES)
   const rest = sorted.slice(MAX_CATEGORIES)
 
@@ -104,20 +103,22 @@ export function CategoryBreakdownChart({
               width={132}
               tickLine={false}
               axisLine={false}
-              tick={{ fill: '#475569', fontSize: 12 }}
+              tick={{ fill: colors.categoryTick, fontSize: 12 }}
               tickFormatter={(value: string) =>
                 value.length > 18 ? `${value.slice(0, 17)}…` : value
               }
             />
 
             <Tooltip
-              cursor={{ fill: '#f8fafc' }}
+              cursor={{ fill: colors.cursor }}
               formatter={(value) => formatMoney(Number(value))}
-              labelStyle={{ color: '#64748b', fontSize: 12 }}
+              labelStyle={{ color: colors.label, fontSize: 12 }}
+              itemStyle={{ color: colors.tooltipText }}
               contentStyle={{
                 borderRadius: 12,
-                border: '1px solid #e2e8f0',
-                boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
+                backgroundColor: colors.tooltipBackground,
+                border: `1px solid ${colors.tooltipBorder}`,
+                boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)',
                 fontSize: 13,
               }}
             />
@@ -125,11 +126,10 @@ export function CategoryBreakdownChart({
             <Bar
               dataKey="total"
               name={t('statistics.expense')}
-              fill={BAR_COLOR}
+              fill={colors.bar}
               radius={[0, 4, 4, 0]}
               maxBarSize={20}
             >
-              {/* Подпись прямо у конца столбика — рейтинг читается без наведения */}
               <LabelList
                 dataKey="total"
                 position="right"
@@ -137,7 +137,7 @@ export function CategoryBreakdownChart({
                 formatter={(value: unknown) =>
                   formatCompact(Number(value), language)
                 }
-                style={{ fill: '#64748b', fontSize: 12 }}
+                style={{ fill: colors.label, fontSize: 12 }}
               />
             </Bar>
           </BarChart>

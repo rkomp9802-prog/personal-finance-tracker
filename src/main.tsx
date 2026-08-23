@@ -4,16 +4,16 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './index.css'
 import './i18n'
 import App from './App.tsx'
+import { ErrorBoundary } from '@/components/common/ErrorBoundary'
 import { AuthProvider } from '@/context/AuthContext'
+import { ThemeProvider } from '@/context/ThemeContext'
 import { ToastProvider } from '@/components/ui/Toast'
 
 // Хранилище загруженных данных на всё приложение.
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // Данные считаются свежими 30 секунд — лишних запросов не будет.
       staleTime: 30_000,
-      // Не перезагружать при возврате на вкладку.
       refetchOnWindowFocus: false,
       retry: 1,
     },
@@ -22,12 +22,16 @@ const queryClient = new QueryClient({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ToastProvider>
-        <AuthProvider>
-          <App />
-        </AuthProvider>
-      </ToastProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ToastProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </ToastProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   </StrictMode>,
 )

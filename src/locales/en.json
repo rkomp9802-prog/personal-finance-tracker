@@ -1,4 +1,49 @@
 {
+    "error": {
+    "title": "Something went wrong",
+    "description": "The app hit an unexpected error. Reloading the page usually fixes it.",
+    "reload": "Reload the page",
+    "details": "Technical details"
+  },
+    "settings": {
+    "title": "Settings",
+    "description": "Your choices are saved in this browser",
+    "appearance": "Appearance",
+    "appearanceHint": "Dark theme is easier on the eyes at night",
+    "language": "Interface language",
+    "languageHint": "Your own category and goal names are not translated"
+  },
+    "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+    "profile": {
+    "personalData": "Personal details",
+    "personalDataHint": "Your name is shown in the app header",
+    "name": "Name",
+    "namePlaceholder": "What should we call you",
+    "email": "Email",
+    "emailHint": "Email is tied to your account and cannot be changed here",
+    "save": "Save",
+    "saved": "Profile updated",
+    "saveError": "Could not save the profile",
+    "avatar": "Avatar",
+    "avatarHint": "PNG or JPG, up to 2 MB",
+    "upload": "Upload",
+    "change": "Replace",
+    "remove": "Remove",
+    "avatarUploaded": "Avatar updated",
+    "avatarRemoved": "Avatar removed",
+    "avatarError": "Could not upload the image",
+    "loadError": "Could not load the profile",
+    "errors": {
+      "notAnImage": "That is not an image. Choose a PNG or JPG",
+      "tooLarge": "The file is over 2 MB. Choose a smaller image"
+    }
+  },
     "calendar": {
     "previousMonth": "Previous month",
     "nextMonth": "Next month",

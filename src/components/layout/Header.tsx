@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next'
+import { useQuery } from '@tanstack/react-query'
 import { LogOut, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { useToast } from '@/components/ui/Toast'
 import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher'
+import { ThemeSwitcher } from '@/components/layout/ThemeSwitcher'
 import { useAuth } from '@/context/AuthContext'
+import { getProfile } from '@/services/profileService'
 
 type HeaderProps = {
   onMenuClick?: () => void
@@ -14,9 +17,13 @@ export function Header({ onMenuClick }: HeaderProps) {
   const { showToast } = useToast()
   const { t } = useTranslation()
 
+  // Тот же ключ, что и на странице профиля: данные загрузятся один раз.
+  const profileQuery = useQuery({ queryKey: ['profile'], queryFn: getProfile })
+
   const metadataName = user?.user_metadata?.name as string | undefined
   const displayName = metadataName ?? user?.email ?? ''
   const initial = displayName.charAt(0).toUpperCase()
+  const avatarUrl = profileQuery.data?.avatar_url ?? null
 
   async function handleSignOut() {
     try {
@@ -46,8 +53,8 @@ export function Header({ onMenuClick }: HeaderProps) {
           {t('app.name')}
         </p>
 
-        <div className="ml-auto flex items-center gap-3">
-          {/* Рядом с этим переключателем на Этапе 12 встанет переключатель темы */}
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+          <ThemeSwitcher />
           <LanguageSwitcher />
 
           <div className="hidden min-w-0 text-right sm:block">
@@ -57,9 +64,17 @@ export function Header({ onMenuClick }: HeaderProps) {
             <p className="truncate text-xs text-slate-500">{user?.email}</p>
           </div>
 
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
-            {initial}
-          </div>
+          {avatarUrl ? (
+            <img
+              src={avatarUrl}
+              alt={t('profile.avatar')}
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-slate-200"
+            />
+          ) : (
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+              {initial}
+            </div>
+          )}
 
           <Button variant="ghost" size="sm" onClick={handleSignOut}>
             <LogOut className="h-4 w-4" />

@@ -9,13 +9,10 @@ import {
   XAxis,
   YAxis,
 } from 'recharts'
+import { useChartColors } from '@/hooks/useChartColors'
 import { formatMoney } from '@/utils/format'
 import type { Expense } from '@/types/expense'
 import type { Income } from '@/types/income'
-
-// Пара цветов проверена валидатором: различимы и при дальтонизме.
-const INCOME_COLOR = '#2563eb'
-const EXPENSE_COLOR = '#d97706'
 
 type IncomeExpenseChartProps = {
   incomes: Income[]
@@ -52,6 +49,7 @@ export function IncomeExpenseChart({
   monthsToShow = 6,
 }: IncomeExpenseChartProps) {
   const { t, i18n } = useTranslation()
+  const colors = useChartColors()
   const language = i18n.resolvedLanguage ?? 'ru'
 
   const points: MonthPoint[] = []
@@ -94,13 +92,13 @@ export function IncomeExpenseChart({
           barCategoryGap="25%"
           barGap={2}
         >
-          <CartesianGrid vertical={false} stroke="#f1f5f9" />
+          <CartesianGrid vertical={false} stroke={colors.grid} />
 
           <XAxis
             dataKey="label"
             tickLine={false}
             axisLine={false}
-            tick={{ fill: '#94a3b8', fontSize: 12 }}
+            tick={{ fill: colors.axis, fontSize: 12 }}
             dy={8}
           />
 
@@ -108,18 +106,20 @@ export function IncomeExpenseChart({
             width={56}
             tickLine={false}
             axisLine={false}
-            tick={{ fill: '#94a3b8', fontSize: 12 }}
+            tick={{ fill: colors.axis, fontSize: 12 }}
             tickFormatter={(value: number) => formatCompact(value, language)}
           />
 
           <Tooltip
-            cursor={{ fill: '#f8fafc' }}
+            cursor={{ fill: colors.cursor }}
             formatter={(value) => formatMoney(Number(value))}
-            labelStyle={{ color: '#64748b', fontSize: 12 }}
+            labelStyle={{ color: colors.label, fontSize: 12 }}
+            itemStyle={{ color: colors.tooltipText }}
             contentStyle={{
               borderRadius: 12,
-              border: '1px solid #e2e8f0',
-              boxShadow: '0 4px 12px rgba(15, 23, 42, 0.08)',
+              backgroundColor: colors.tooltipBackground,
+              border: `1px solid ${colors.tooltipBorder}`,
+              boxShadow: '0 4px 12px rgba(15, 23, 42, 0.15)',
               fontSize: 13,
             }}
           />
@@ -127,13 +127,13 @@ export function IncomeExpenseChart({
           <Legend
             iconType="circle"
             iconSize={8}
-            wrapperStyle={{ fontSize: 12, color: '#64748b', paddingTop: 8 }}
+            wrapperStyle={{ fontSize: 12, color: colors.label, paddingTop: 8 }}
           />
 
           <Bar
             dataKey="income"
             name={t('statistics.income')}
-            fill={INCOME_COLOR}
+            fill={colors.income}
             radius={[4, 4, 0, 0]}
             maxBarSize={28}
           />
@@ -141,7 +141,7 @@ export function IncomeExpenseChart({
           <Bar
             dataKey="expense"
             name={t('statistics.expense')}
-            fill={EXPENSE_COLOR}
+            fill={colors.expense}
             radius={[4, 4, 0, 0]}
             maxBarSize={28}
           />

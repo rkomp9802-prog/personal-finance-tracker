@@ -1,52 +1,52 @@
-import { useTranslation } from 'react-i18next'
+import { lazy, Suspense } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/Card'
+import { Skeleton } from '@/components/ui/Skeleton'
 import { ProtectedRoute } from '@/components/common/ProtectedRoute'
 import { MainLayout } from '@/components/layout/MainLayout'
-import { Budgets } from '@/pages/Budgets'
-import { Calendar } from '@/pages/Calendar'
-import { Dashboard } from '@/pages/Dashboard'
-import { Expenses } from '@/pages/Expenses'
-import { Goals } from '@/pages/Goals'
-import { Incomes } from '@/pages/Incomes'
 import { Login } from '@/pages/Login'
 import { Register } from '@/pages/Register'
-import { Statistics } from '@/pages/Statistics'
 
-const placeholderRoutes = [
-  { path: '/profile', titleKey: 'nav.profile', descriptionKey: 'pages.profile', stage: '12' },
-]
+// Закрытые страницы едут отдельными файлами и скачиваются
+// в момент первого открытия, а не все сразу при входе.
+const Dashboard = lazy(async () => ({
+  default: (await import('@/pages/Dashboard')).Dashboard,
+}))
 
-function PlaceholderPage({
-  titleKey,
-  descriptionKey,
-  stage,
-}: {
-  titleKey: string
-  descriptionKey: string
-  stage: string
-}) {
-  const { t } = useTranslation()
+const Incomes = lazy(async () => ({
+  default: (await import('@/pages/Incomes')).Incomes,
+}))
 
+const Expenses = lazy(async () => ({
+  default: (await import('@/pages/Expenses')).Expenses,
+}))
+
+const Budgets = lazy(async () => ({
+  default: (await import('@/pages/Budgets')).Budgets,
+}))
+
+const Goals = lazy(async () => ({
+  default: (await import('@/pages/Goals')).Goals,
+}))
+
+const Statistics = lazy(async () => ({
+  default: (await import('@/pages/Statistics')).Statistics,
+}))
+
+const Calendar = lazy(async () => ({
+  default: (await import('@/pages/Calendar')).Calendar,
+}))
+
+const Profile = lazy(async () => ({
+  default: (await import('@/pages/Profile')).Profile,
+}))
+
+// Что показать, пока файл страницы скачивается.
+function PageLoading() {
   return (
-    <div className="mx-auto w-full max-w-4xl">
-      <Card>
-        <CardHeader>
-          <CardTitle>{t(titleKey)}</CardTitle>
-          <CardDescription>{t(descriptionKey)}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-slate-600">
-            {t('pages.placeholder', { stage })}
-          </p>
-        </CardContent>
-      </Card>
+    <div className="mx-auto flex w-full max-w-4xl flex-col gap-4">
+      <Skeleton className="h-8 w-48" />
+      <Skeleton className="h-36 w-full rounded-2xl" />
+      <Skeleton className="h-56 w-full rounded-2xl" />
     </div>
   )
 }
@@ -54,38 +54,27 @@ function PlaceholderPage({
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+      <Suspense fallback={<PageLoading />}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route element={<ProtectedRoute />}>
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/incomes" element={<Incomes />} />
-            <Route path="/expenses" element={<Expenses />} />
-            <Route path="/budgets" element={<Budgets />} />
-            <Route path="/goals" element={<Goals />} />
-            <Route path="/statistics" element={<Statistics />} />
-            <Route path="/calendar" element={<Calendar />} />
-
-            {placeholderRoutes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={
-                  <PlaceholderPage
-                    titleKey={route.titleKey}
-                    descriptionKey={route.descriptionKey}
-                    stage={route.stage}
-                  />
-                }
-              />
-            ))}
+          <Route element={<ProtectedRoute />}>
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/incomes" element={<Incomes />} />
+              <Route path="/expenses" element={<Expenses />} />
+              <Route path="/budgets" element={<Budgets />} />
+              <Route path="/goals" element={<Goals />} />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/profile" element={<Profile />} />
+            </Route>
           </Route>
-        </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }
