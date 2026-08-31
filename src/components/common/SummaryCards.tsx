@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Card, CardContent } from '@/components/ui/Card'
+import { BorderBeam } from '@/components/kit/border-beam'
 import { AnimatedNumber } from '@/components/common/AnimatedNumber'
 import { EntityCard } from '@/components/common/EntityCard'
 import { formatMoney } from '@/utils/format'
@@ -15,8 +16,9 @@ export function SummaryCards({ summary }: SummaryCardsProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      {/* Главный показатель экрана — самый крупный текст на странице */}
-      <Card>
+      {/* Главный показатель экрана — самый крупный текст и единственная
+          карточка со светящейся рамкой. Выделять так можно только одно. */}
+      <Card className="relative overflow-hidden">
         <CardContent className="pt-6">
           <p className="text-sm font-medium text-slate-500">
             {t('dashboard.balance')}
@@ -35,6 +37,14 @@ export function SummaryCards({ summary }: SummaryCardsProps) {
             </span>
           </p>
         </CardContent>
+
+        <BorderBeam
+          size={120}
+          duration={8}
+          borderWidth={1.5}
+          colorFrom="#2563eb"
+          colorTo="#60a5fa"
+        />
       </Card>
 
       <div className="grid gap-4 sm:grid-cols-3">
