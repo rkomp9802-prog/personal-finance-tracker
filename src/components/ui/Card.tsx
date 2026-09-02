@@ -20,7 +20,7 @@ export function Card({
         // не читается, границу держит волосяная рамка.
         'rounded-2xl bg-card shadow-card dark:border dark:border-border dark:shadow-none',
         interactive &&
-          'transition-[box-shadow,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:shadow-card-hover',
+          'transition-[box-shadow,transform] duration-200 ease-spring hover:-translate-y-0.5 hover:shadow-card-hover',
         className,
       )}
       {...props}

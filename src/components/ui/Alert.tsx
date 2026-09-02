@@ -7,9 +7,12 @@ import { cn } from '@/utils/cn'
 // ни разу: для успеха у нас тост, для подсказок — обычный текст.
 type AlertVariant = 'danger'
 
+// Плашка не заливается красным целиком. Сплошной цветной блок кричит
+// одинаково громко на любой ошибке и плохо читается; красным помечается
+// только иконка, а что случилось — говорит текст.
 const alertStyles: Record<AlertVariant, { box: string; icon: string }> = {
   danger: {
-    box: 'border-red-200 bg-red-50 text-red-800',
+    box: 'border-border bg-card text-body',
     icon: 'text-red-600',
   },
 }

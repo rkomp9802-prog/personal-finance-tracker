@@ -114,7 +114,7 @@ export function ExpenseForm({
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="flex flex-col gap-4"
+      className="flex flex-col gap-6"
       noValidate
     >
       <div className="grid gap-4 sm:grid-cols-2">

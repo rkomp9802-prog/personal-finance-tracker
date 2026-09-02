@@ -81,14 +81,12 @@ function ProgressBar({
   tone = 'neutral',
 }: {
   percent: number
-  tone?: 'neutral' | 'warning' | 'success'
+  tone?: 'neutral' | 'warning'
 }) {
-  const barColor =
-    tone === 'warning'
-      ? 'bg-amber-500'
-      : tone === 'success'
-        ? 'bg-emerald-500'
-        : 'bg-blue-600'
+  // Полоса знает два состояния, а не три. Достигнутая цель не красится
+  // в третий цвет — про неё прямым текстом написано рядом, и это
+  // понятнее цветового кода, который ещё надо разгадать.
+  const barColor = tone === 'warning' ? 'bg-amber-500' : 'bg-blue-600'
 
   return (
     <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-muted">
@@ -199,10 +197,7 @@ export function EntityCard(props: EntityCardProps) {
           </p>
         </div>
 
-        <ProgressBar
-          percent={percent}
-          tone={isReached ? 'success' : 'neutral'}
-        />
+        <ProgressBar percent={percent} />
 
         <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
           <p className="tabular-nums text-muted-foreground">

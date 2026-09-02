@@ -15,7 +15,7 @@ export function SummaryCards({ summary }: SummaryCardsProps) {
   const isPositive = summary.balance >= 0
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6">
       {/* Главный показатель экрана — самый крупный текст и единственная
           карточка со светящейся рамкой. Выделять так можно только одно. */}
       <Card className="relative overflow-hidden">

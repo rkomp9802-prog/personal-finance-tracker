@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { motion } from 'motion/react'
+import { motion, useReducedMotion } from 'motion/react'
 import type { Transition } from 'motion/react'
 import { cn } from '@/utils/cn'
 
@@ -34,6 +34,16 @@ export function BorderBeam({
   initialOffset = 0,
   borderWidth = 1,
 }: BorderBeamProps) {
+  // Бегущий по кругу луч — бесконечная анимация, а такие требование
+  // «убрать движение» обязано схлопывать полностью. Не в статичную
+  // полоску, а совсем: неподвижный кусок свечения на одной стороне
+  // рамки выглядел бы дефектом отрисовки.
+  const shouldReduceMotion = useReducedMotion()
+
+  if (shouldReduceMotion) {
+    return null
+  }
+
   return (
     // Прозрачная рамка поверх карточки. Маска вырезает середину,
     // поэтому видна только полоска по контуру.

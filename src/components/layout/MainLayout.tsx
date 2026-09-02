@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
@@ -11,6 +11,8 @@ export function MainLayout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
   const { t } = useTranslation()
+  // Просьба системы убрать движение: страницы и меню меняются мгновенно.
+  const reduceMotion = useReducedMotion()
 
   // Перешли на другую страницу — выезжающее меню закрывается само.
   useEffect(() => {
@@ -56,7 +58,10 @@ export function MainLayout() {
 
       <div className="flex flex-1">
         {/* Постоянное меню — только на широких экранах */}
-        <aside className="hidden w-64 shrink-0 border-r border-border bg-card/70 backdrop-blur-md lg:block">
+        {/* Без размытия: за неподвижной колонкой ничего не проезжает,
+            размывать нечего — оставался бы только расход на видеокарту.
+            У шапки размытие осмысленно, там под неё уходит содержимое. */}
+        <aside className="hidden w-64 shrink-0 border-r border-border bg-card lg:block">
           <div className="sticky top-16">
             <Sidebar />
           </div>
@@ -78,10 +83,14 @@ export function MainLayout() {
 
               <motion.aside
                 key="drawer"
-                initial={{ x: '-100%' }}
+                initial={reduceMotion ? false : { x: '-100%' }}
                 animate={{ x: 0 }}
-                exit={{ x: '-100%' }}
-                transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
+                exit={reduceMotion ? { opacity: 0 } : { x: '-100%' }}
+                transition={{
+                  type: 'tween',
+                  duration: reduceMotion ? 0 : 0.25,
+                  ease: 'easeOut',
+                }}
                 className="fixed inset-y-0 left-0 z-50 w-72 border-r border-border bg-card shadow-card-hover lg:hidden"
               >
                 <div className="flex h-16 items-center justify-between border-b border-border px-4">
@@ -108,10 +117,10 @@ export function MainLayout() {
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
-              initial={{ opacity: 0, y: 8 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.18 }}
+              exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+              transition={{ duration: reduceMotion ? 0 : 0.18 }}
             >
               <Outlet />
             </motion.div>
