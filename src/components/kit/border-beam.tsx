@@ -48,7 +48,11 @@ export function BorderBeam({
     // Прозрачная рамка поверх карточки. Маска вырезает середину,
     // поэтому видна только полоска по контуру.
     <div
-      className="pointer-events-none absolute inset-0 rounded-[inherit] border-(length:--border-beam-width) border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]"
+      // ВАЖНО: mask-image, а не сокращённая запись mask. Сокращённая
+      // сбрасывает mask-clip в исходное значение, маска перестаёт
+      // вырезать середину — и вместо полоски по контуру виден весь
+      // светящийся квадрат целиком, синим пятном поверх карточки.
+      className="pointer-events-none absolute inset-0 rounded-[inherit] border-(length:--border-beam-width) border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]"
       style={
         {
           '--border-beam-width': `${borderWidth}px`,
