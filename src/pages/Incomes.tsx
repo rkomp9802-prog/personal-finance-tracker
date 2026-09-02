@@ -113,10 +113,10 @@ export function Incomes() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
             {t('nav.incomes')}
           </h1>
-          <p className="mt-1 text-sm text-slate-600">{t('pages.incomes')}</p>
+          <p className="mt-1 text-sm text-body">{t('pages.incomes')}</p>
         </div>
 
         <Button
@@ -187,10 +187,10 @@ export function Incomes() {
             </div>
           ) : incomes.length === 0 ? (
             <div className="px-6 pb-8 pt-2 text-center">
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-sm font-medium text-foreground">
                 {t('income.empty')}
               </p>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {t('income.emptyHint')}
               </p>
             </div>

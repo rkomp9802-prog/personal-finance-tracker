@@ -114,10 +114,10 @@ export function Expenses() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
             {t('nav.expenses')}
           </h1>
-          <p className="mt-1 text-sm text-slate-600">{t('pages.expenses')}</p>
+          <p className="mt-1 text-sm text-body">{t('pages.expenses')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -224,10 +224,10 @@ export function Expenses() {
             </div>
           ) : expenses.length === 0 ? (
             <div className="px-6 pb-8 pt-2 text-center">
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-sm font-medium text-foreground">
                 {t('expenseList.empty')}
               </p>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {t('expenseList.emptyHint')}
               </p>
             </div>

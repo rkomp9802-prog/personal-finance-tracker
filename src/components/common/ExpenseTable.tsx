@@ -33,20 +33,20 @@ export function ExpenseTable({
     <div className="overflow-x-auto">
       <table className="w-full min-w-[680px] border-collapse text-sm">
         <thead>
-          <tr className="border-b border-slate-200 text-left">
-            <th className="px-4 py-3 font-medium text-slate-500">
+          <tr className="border-b border-border text-left">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('expenseList.columns.date')}
             </th>
-            <th className="px-4 py-3 font-medium text-slate-500">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('expenseList.columns.category')}
             </th>
-            <th className="px-4 py-3 font-medium text-slate-500">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('expenseList.columns.note')}
             </th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">
+            <th className="px-4 py-3 text-right font-medium text-muted-foreground">
               {t('expenseList.columns.amount')}
             </th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">
+            <th className="px-4 py-3 text-right font-medium text-muted-foreground">
               {t('expenseList.columns.actions')}
             </th>
           </tr>
@@ -56,24 +56,24 @@ export function ExpenseTable({
           {expenses.map((expense) => (
             <tr
               key={expense.id}
-              className="border-b border-slate-100 transition-colors hover:bg-slate-50"
+              className="border-b border-muted transition-colors hover:bg-background"
             >
-              <td className="whitespace-nowrap px-4 py-3 text-slate-500">
+              <td className="whitespace-nowrap px-4 py-3 text-muted-foreground">
                 {formatDate(expense.date)}
               </td>
-              <td className="px-4 py-3 font-medium text-slate-900">
+              <td className="px-4 py-3 font-medium text-foreground">
                 {categoryLabel(expense.category)}
               </td>
-              <td className="px-4 py-3 text-slate-500">
+              <td className="px-4 py-3 text-muted-foreground">
                 {expense.note ?? '—'}
               </td>
-              <td className="whitespace-nowrap px-4 py-3 text-right font-semibold tabular-nums text-slate-900">
+              <td className="whitespace-nowrap px-4 py-3 text-right font-semibold tabular-nums text-foreground">
                 − {formatMoney(expense.amount)}
               </td>
               <td className="whitespace-nowrap px-4 py-3 text-right">
                 {confirmingId === expense.id ? (
                   <div className="flex items-center justify-end gap-2">
-                    <span className="text-slate-500">
+                    <span className="text-muted-foreground">
                       {t('expenseList.confirmDelete')}
                     </span>
                     <Button

@@ -14,7 +14,7 @@ export function ThemeSwitcher() {
       onClick={toggleTheme}
       aria-label={isDark ? t('theme.toLight') : t('theme.toDark')}
       title={isDark ? t('theme.toLight') : t('theme.toDark')}
-      className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
+      className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
     >
       {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>

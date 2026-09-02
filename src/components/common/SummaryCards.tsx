@@ -20,17 +20,17 @@ export function SummaryCards({ summary }: SummaryCardsProps) {
           карточка со светящейся рамкой. Выделять так можно только одно. */}
       <Card className="relative overflow-hidden">
         <CardContent className="pt-6">
-          <p className="text-sm font-medium text-slate-500">
+          <p className="text-sm font-medium text-muted-foreground">
             {t('dashboard.balance')}
           </p>
 
-          <p className="mt-2 text-4xl font-semibold tracking-tight tabular-nums text-slate-900 sm:text-5xl">
+          <p className="mt-2 text-4xl font-semibold tracking-tight tabular-nums text-foreground sm:text-5xl">
             <AnimatedNumber value={summary.balance} format={formatMoney} />
           </p>
 
-          <p className="mt-3 text-sm text-slate-500">
+          <p className="mt-3 text-sm text-muted-foreground">
             {t('dashboard.balanceHint')} ·{' '}
-            <span className={isPositive ? 'text-slate-500' : 'text-amber-700'}>
+            <span className={isPositive ? 'text-muted-foreground' : 'text-amber-700'}>
               {isPositive
                 ? t('dashboard.positiveBalance')
                 : t('dashboard.negativeBalance')}

@@ -88,8 +88,8 @@ export function ExpenseChart({ expenses }: ExpenseChartProps) {
   if (!hasData) {
     return (
       <div className="py-10 text-center">
-        <p className="text-sm font-medium text-slate-900">{t('chart.empty')}</p>
-        <p className="mt-1 text-sm text-slate-500">{t('chart.emptyHint')}</p>
+        <p className="text-sm font-medium text-foreground">{t('chart.empty')}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{t('chart.emptyHint')}</p>
       </div>
     )
   }
@@ -146,7 +146,7 @@ export function ExpenseChart({ expenses }: ExpenseChartProps) {
         </ResponsiveContainer>
       </div>
 
-      <p className="text-sm leading-relaxed text-slate-500">{buildCaption()}</p>
+      <p className="text-sm leading-relaxed text-muted-foreground">{buildCaption()}</p>
     </div>
   )
 }

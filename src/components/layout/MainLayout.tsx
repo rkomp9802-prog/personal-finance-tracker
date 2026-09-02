@@ -42,7 +42,7 @@ export function MainLayout() {
   }, [])
 
   return (
-    <div className="flex min-h-dvh flex-col bg-slate-50">
+    <div className="flex min-h-dvh flex-col bg-background">
       {/* Первая цель при обходе с клавиатуры: перепрыгнуть меню
           и попасть сразу в содержимое страницы. Видна только в фокусе. */}
       <a
@@ -56,7 +56,7 @@ export function MainLayout() {
 
       <div className="flex flex-1">
         {/* Постоянное меню — только на широких экранах */}
-        <aside className="hidden w-64 shrink-0 border-r border-slate-200 bg-white/70 backdrop-blur-md lg:block">
+        <aside className="hidden w-64 shrink-0 border-r border-border bg-card/70 backdrop-blur-md lg:block">
           <div className="sticky top-16">
             <Sidebar />
           </div>
@@ -73,7 +73,7 @@ export function MainLayout() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={() => setIsMenuOpen(false)}
-                className="fixed inset-0 z-40 bg-slate-900/20 backdrop-blur-sm lg:hidden"
+                className="fixed inset-0 z-40 bg-overlay/20 backdrop-blur-sm lg:hidden"
               />
 
               <motion.aside
@@ -82,17 +82,17 @@ export function MainLayout() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-                className="fixed inset-y-0 left-0 z-50 w-72 border-r border-slate-200 bg-white shadow-xl lg:hidden"
+                className="fixed inset-y-0 left-0 z-50 w-72 border-r border-border bg-card shadow-xl lg:hidden"
               >
-                <div className="flex h-16 items-center justify-between border-b border-slate-200 px-4">
-                  <p className="text-sm font-semibold tracking-tight text-slate-900">
+                <div className="flex h-16 items-center justify-between border-b border-border px-4">
+                  <p className="text-sm font-semibold tracking-tight text-foreground">
                     Меню
                   </p>
                   <button
                     type="button"
                     onClick={() => setIsMenuOpen(false)}
                     aria-label="Закрыть меню"
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg text-body transition-colors hover:bg-muted hover:text-foreground"
                   >
                     <X className="h-5 w-5" />
                   </button>

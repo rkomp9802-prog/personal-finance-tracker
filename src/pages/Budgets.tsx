@@ -134,10 +134,10 @@ export function Budgets() {
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
             {t('nav.budgets')}
           </h1>
-          <p className="mt-1 text-sm text-slate-600">{t('pages.budgets')}</p>
+          <p className="mt-1 text-sm text-body">{t('pages.budgets')}</p>
         </div>
 
         <Button
@@ -155,21 +155,21 @@ export function Budgets() {
       {budgets.length > 0 ? (
         <Card>
           <CardContent className="flex flex-wrap items-baseline gap-x-8 gap-y-2 pt-6 text-sm">
-            <p className="text-slate-500">
+            <p className="text-muted-foreground">
               {t('budgetList.totalLimit')}:{' '}
-              <span className="font-semibold tabular-nums text-slate-900">
+              <span className="font-semibold tabular-nums text-foreground">
                 {formatMoney(totalLimit)}
               </span>
             </p>
-            <p className="text-slate-500">
+            <p className="text-muted-foreground">
               {t('budgetList.totalSpent')}:{' '}
-              <span className="font-semibold tabular-nums text-slate-900">
+              <span className="font-semibold tabular-nums text-foreground">
                 {formatMoney(totalSpent)}
               </span>
             </p>
             <p
               className={
-                overCount > 0 ? 'text-amber-700' : 'text-slate-500'
+                overCount > 0 ? 'text-amber-700' : 'text-muted-foreground'
               }
             >
               {overCount > 0
@@ -205,12 +205,12 @@ export function Budgets() {
                 />
 
                 {editingBudget ? (
-                  <div className="border-t border-slate-100 pt-4">
+                  <div className="border-t border-muted pt-4">
                     {isConfirmingDelete ? (
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="mr-auto text-sm text-slate-600">
+                        <span className="mr-auto text-sm text-body">
                           {t('budgetList.confirmDelete')}{' '}
-                          <span className="text-slate-400">
+                          <span className="text-subtle-foreground">
                             {t('budgetList.deleteWarning')}
                           </span>
                         </span>
@@ -267,10 +267,10 @@ export function Budgets() {
             <Alert variant="danger" title={t('budget.loadError')} />
           ) : budgets.length === 0 ? (
             <div className="py-6 text-center">
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-sm font-medium text-foreground">
                 {t('budget.empty')}
               </p>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {t('budget.emptyHint')}
               </p>
             </div>

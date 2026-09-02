@@ -49,7 +49,7 @@ export function Sidebar({ onNavigate }: SidebarProps) {
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
                 isActive
                   ? 'bg-blue-50 text-blue-700'
-                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+                  : 'text-body hover:bg-muted hover:text-foreground',
               )
             }
           >

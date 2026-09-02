@@ -22,10 +22,10 @@ export function Dashboard() {
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
           {t('nav.dashboard')}
         </h1>
-        <p className="mt-1 text-sm text-slate-600">{t('pages.dashboard')}</p>
+        <p className="mt-1 text-sm text-body">{t('pages.dashboard')}</p>
       </div>
 
       {isPending ? (

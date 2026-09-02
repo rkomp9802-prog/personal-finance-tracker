@@ -14,8 +14,8 @@ const buttonStyles = cva(
         primary:
           'bg-blue-600 text-white shadow-sm hover:bg-blue-700 active:bg-blue-800',
         secondary:
-          'border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:bg-slate-100',
-        ghost: 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+          'border border-border bg-card text-label shadow-sm hover:bg-background active:bg-muted',
+        ghost: 'text-body hover:bg-muted hover:text-foreground',
         danger:
           'bg-red-600 text-white shadow-sm hover:bg-red-700 active:bg-red-800',
       },

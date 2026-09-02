@@ -10,7 +10,7 @@ export function LanguageSwitcher() {
     <div
       role="group"
       aria-label={t('header.language')}
-      className="flex items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-0.5"
+      className="flex items-center gap-0.5 rounded-lg border border-border bg-card p-0.5"
     >
       {supportedLanguages.map((language) => (
         <button
@@ -24,7 +24,7 @@ export function LanguageSwitcher() {
             'rounded-md px-2 py-1 text-xs font-semibold transition-colors',
             currentLanguage === language.code
               ? 'bg-blue-600 text-white'
-              : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900',
+              : 'text-muted-foreground hover:bg-muted hover:text-foreground',
           )}
         >
           {language.label}

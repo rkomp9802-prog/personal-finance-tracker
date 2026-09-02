@@ -24,7 +24,7 @@ export function Input({
       {label ? (
         <label
           htmlFor={inputId}
-          className="mb-1.5 block text-sm font-medium text-slate-700"
+          className="mb-1.5 block text-sm font-medium text-label"
         >
           {label}
         </label>
@@ -34,10 +34,10 @@ export function Input({
         id={inputId}
         aria-invalid={error ? true : undefined}
         className={cn(
-          'h-10 w-full rounded-lg border bg-white px-3 text-sm text-slate-900 shadow-sm transition-colors placeholder:text-slate-400 focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400',
+          'h-10 w-full rounded-lg border bg-card px-3 text-sm text-foreground shadow-sm transition-colors placeholder:text-subtle-foreground focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-background disabled:text-subtle-foreground',
           error
             ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
-            : 'border-slate-200 focus:border-blue-500 focus:ring-blue-100',
+            : 'border-border focus:border-blue-500 focus:ring-blue-100',
           className,
         )}
         {...props}
@@ -46,7 +46,7 @@ export function Input({
       {error ? (
         <p className="mt-1.5 text-sm text-red-600">{error}</p>
       ) : hint ? (
-        <p className="mt-1.5 text-sm text-slate-500">{hint}</p>
+        <p className="mt-1.5 text-sm text-muted-foreground">{hint}</p>
       ) : null}
     </div>
   )

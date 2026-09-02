@@ -38,18 +38,18 @@ export function Header({ onMenuClick }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/70 backdrop-blur-md">
+    <header className="sticky top-0 z-30 border-b border-border bg-card/70 backdrop-blur-md">
       <div className="flex h-16 items-center gap-3 px-4 sm:px-6">
         <button
           type="button"
           onClick={onMenuClick}
           aria-label={t('header.openMenu')}
-          className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 lg:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-lg text-body transition-colors hover:bg-muted hover:text-foreground lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
 
-        <p className="truncate text-sm font-semibold tracking-tight text-slate-900">
+        <p className="truncate text-sm font-semibold tracking-tight text-foreground">
           {t('app.name')}
         </p>
 
@@ -58,17 +58,17 @@ export function Header({ onMenuClick }: HeaderProps) {
           <LanguageSwitcher />
 
           <div className="hidden min-w-0 text-right sm:block">
-            <p className="truncate text-sm font-medium text-slate-900">
+            <p className="truncate text-sm font-medium text-foreground">
               {displayName}
             </p>
-            <p className="truncate text-xs text-slate-500">{user?.email}</p>
+            <p className="truncate text-xs text-muted-foreground">{user?.email}</p>
           </div>
 
           {avatarUrl ? (
             <img
               src={avatarUrl}
               alt={t('profile.avatar')}
-              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-slate-200"
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-border"
             />
           ) : (
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">

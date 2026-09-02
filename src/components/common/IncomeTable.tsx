@@ -26,23 +26,23 @@ export function IncomeTable({
     <div className="overflow-x-auto">
       <table className="w-full min-w-[720px] border-collapse text-sm">
         <thead>
-          <tr className="border-b border-slate-200 text-left">
-            <th className="px-4 py-3 font-medium text-slate-500">
+          <tr className="border-b border-border text-left">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('income.columns.date')}
             </th>
-            <th className="px-4 py-3 font-medium text-slate-500">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('income.columns.category')}
             </th>
-            <th className="px-4 py-3 font-medium text-slate-500">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('income.columns.source')}
             </th>
-            <th className="px-4 py-3 font-medium text-slate-500">
+            <th className="px-4 py-3 font-medium text-muted-foreground">
               {t('income.columns.note')}
             </th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">
+            <th className="px-4 py-3 text-right font-medium text-muted-foreground">
               {t('income.columns.amount')}
             </th>
-            <th className="px-4 py-3 text-right font-medium text-slate-500">
+            <th className="px-4 py-3 text-right font-medium text-muted-foreground">
               {t('income.columns.actions')}
             </th>
           </tr>
@@ -52,25 +52,25 @@ export function IncomeTable({
           {incomes.map((income) => (
             <tr
               key={income.id}
-              className="border-b border-slate-100 transition-colors hover:bg-slate-50"
+              className="border-b border-muted transition-colors hover:bg-background"
             >
-              <td className="whitespace-nowrap px-4 py-3 text-slate-500">
+              <td className="whitespace-nowrap px-4 py-3 text-muted-foreground">
                 {formatDate(income.date)}
               </td>
-              <td className="px-4 py-3 font-medium text-slate-900">
+              <td className="px-4 py-3 font-medium text-foreground">
                 {t(`income.categories.${income.category}`)}
               </td>
-              <td className="px-4 py-3 text-slate-600">
+              <td className="px-4 py-3 text-body">
                 {income.source ?? '—'}
               </td>
-              <td className="px-4 py-3 text-slate-500">{income.note ?? '—'}</td>
-              <td className="whitespace-nowrap px-4 py-3 text-right font-semibold tabular-nums text-slate-900">
+              <td className="px-4 py-3 text-muted-foreground">{income.note ?? '—'}</td>
+              <td className="whitespace-nowrap px-4 py-3 text-right font-semibold tabular-nums text-foreground">
                 + {formatMoney(income.amount)}
               </td>
               <td className="whitespace-nowrap px-4 py-3 text-right">
                 {confirmingId === income.id ? (
                   <div className="flex items-center justify-end gap-2">
-                    <span className="text-slate-500">
+                    <span className="text-muted-foreground">
                       {t('income.confirmDelete')}
                     </span>
                     <Button

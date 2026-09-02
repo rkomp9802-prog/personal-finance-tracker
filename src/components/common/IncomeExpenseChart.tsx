@@ -73,10 +73,10 @@ export function IncomeExpenseChart({
   if (!hasData) {
     return (
       <div className="py-10 text-center">
-        <p className="text-sm font-medium text-slate-900">
+        <p className="text-sm font-medium text-foreground">
           {t('statistics.empty')}
         </p>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-muted-foreground">
           {t('statistics.emptyHint')}
         </p>
       </div>

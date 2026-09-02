@@ -81,7 +81,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 }
 
 const toastStyles: Record<ToastVariant, string> = {
-  info: 'border-slate-200 text-slate-700',
+  info: 'border-border text-label',
   success: 'border-emerald-200 text-emerald-800',
   error: 'border-red-200 text-red-800',
 }
@@ -109,7 +109,7 @@ function ToastCard({
       exit={{ opacity: 0, y: 8, scale: 0.98 }}
       transition={{ duration: 0.18 }}
       className={cn(
-        'pointer-events-auto flex items-start gap-3 rounded-2xl border bg-white px-4 py-3 shadow-md',
+        'pointer-events-auto flex items-start gap-3 rounded-2xl border bg-card px-4 py-3 shadow-md',
         toastStyles[toast.variant],
       )}
     >
@@ -119,7 +119,7 @@ function ToastCard({
         type="button"
         onClick={onClose}
         aria-label="Закрыть"
-        className="rounded-md p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+        className="rounded-md p-1 text-subtle-foreground transition-colors hover:bg-muted hover:text-body"
       >
         <X className="h-4 w-4" />
       </button>

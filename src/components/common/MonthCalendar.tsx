@@ -113,7 +113,7 @@ export function MonthCalendar({
         {weekdayNames(language).map((name) => (
           <div
             key={name}
-            className="px-1 text-center text-xs font-medium uppercase text-slate-400"
+            className="px-1 text-center text-xs font-medium uppercase text-subtle-foreground"
           >
             {name}
           </div>
@@ -140,7 +140,7 @@ export function MonthCalendar({
                 'flex min-h-[72px] flex-col items-start gap-0.5 rounded-lg border p-1.5 text-left transition-colors',
                 isSelected
                   ? 'border-blue-300 bg-blue-50'
-                  : 'border-slate-100 hover:border-slate-200 hover:bg-slate-50',
+                  : 'border-muted hover:border-border hover:bg-background',
               )}
             >
               <span
@@ -148,7 +148,7 @@ export function MonthCalendar({
                   'flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium',
                   isToday
                     ? 'bg-blue-600 text-white'
-                    : 'text-slate-600',
+                    : 'text-body',
                 )}
               >
                 {day}

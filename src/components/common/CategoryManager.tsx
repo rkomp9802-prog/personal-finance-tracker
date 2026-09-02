@@ -185,11 +185,11 @@ export function CategoryManager() {
             : ''}
         </Alert>
       ) : categories.length === 0 ? (
-        <div className="rounded-lg bg-slate-50 px-4 py-6 text-center">
-          <p className="text-sm font-medium text-slate-900">
+        <div className="rounded-lg bg-background px-4 py-6 text-center">
+          <p className="text-sm font-medium text-foreground">
             {t('categoryManager.empty')}
           </p>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-muted-foreground">
             {t('categoryManager.emptyHint')}
           </p>
         </div>
@@ -198,7 +198,7 @@ export function CategoryManager() {
           {categories.map((category) => (
             <li
               key={category.id}
-              className="flex flex-wrap items-center gap-2 rounded-lg border border-slate-200 px-3 py-2"
+              className="flex flex-wrap items-center gap-2 rounded-lg border border-border px-3 py-2"
             >
               {editingId === category.id ? (
                 <>
@@ -228,9 +228,9 @@ export function CategoryManager() {
                 </>
               ) : confirmingId === category.id ? (
                 <>
-                  <span className="mr-auto text-sm text-slate-600">
+                  <span className="mr-auto text-sm text-body">
                     {t('categoryManager.confirmDelete')}{' '}
-                    <span className="text-slate-400">
+                    <span className="text-subtle-foreground">
                       {t('categoryManager.deleteWarning')}
                     </span>
                   </span>
@@ -255,7 +255,7 @@ export function CategoryManager() {
                 </>
               ) : (
                 <>
-                  <span className="mr-auto text-sm font-medium text-slate-900">
+                  <span className="mr-auto text-sm font-medium text-foreground">
                     {category.name}
                   </span>
                   <Button
