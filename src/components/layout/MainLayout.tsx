@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
@@ -9,6 +10,7 @@ import { Sidebar } from '@/components/layout/Sidebar'
 export function MainLayout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
+  const { t } = useTranslation()
 
   // Перешли на другую страницу — выезжающее меню закрывается само.
   useEffect(() => {
@@ -40,7 +42,16 @@ export function MainLayout() {
   }, [])
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-dvh flex-col bg-slate-50">
+      {/* Первая цель при обходе с клавиатуры: перепрыгнуть меню
+          и попасть сразу в содержимое страницы. Видна только в фокусе. */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white"
+      >
+        {t('a11y.skipToContent')}
+      </a>
+
       <Header onMenuClick={() => setIsMenuOpen(true)} />
 
       <div className="flex flex-1">
@@ -93,7 +104,7 @@ export function MainLayout() {
           ) : null}
         </AnimatePresence>
 
-        <main className="min-w-0 flex-1 p-4 sm:p-6">
+        <main id="main" className="min-w-0 flex-1 p-4 sm:p-6">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}

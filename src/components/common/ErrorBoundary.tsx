@@ -9,7 +9,7 @@ function ErrorFallback({ error }: { error: Error }) {
   const { t } = useTranslation()
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
+    <div className="flex min-h-dvh items-center justify-center bg-slate-50 p-4">
       <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-50 text-amber-700">
           <AlertTriangle className="h-5 w-5" />

@@ -34,4 +34,15 @@ i18n
     },
   })
 
+// Атрибут lang на странице должен совпадать с выбранным языком:
+// по нему браузер выбирает правила переноса слов, а программы
+// чтения с экрана — произношение. Держим его в одном месте,
+// чтобы переключатель языка не пришлось об этом помнить.
+function syncDocumentLanguage(language: string) {
+  document.documentElement.lang = language
+}
+
+syncDocumentLanguage(i18n.resolvedLanguage ?? 'ru')
+i18n.on('languageChanged', syncDocumentLanguage)
+
 export default i18n

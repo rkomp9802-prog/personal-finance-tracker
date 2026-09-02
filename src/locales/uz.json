@@ -1,4 +1,7 @@
 {
+    "a11y": {
+    "skipToContent": "Asosiy qismga o'tish"
+  },
     "error": {
     "title": "Nimadir xato ketdi",
     "description": "Ilovada kutilmagan xatolik yuz berdi. Sahifani yangilang — odatda bu yordam beradi.",
