@@ -148,13 +148,13 @@ export function Goals() {
   ).length
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {t('nav.goals')}
           </h1>
-          <p className="mt-1 text-sm text-slate-600">{t('pages.goals')}</p>
+          <p className="mt-2 text-pretty text-base text-body">{t('pages.goals')}</p>
         </div>
 
         <Button
@@ -172,19 +172,19 @@ export function Goals() {
       {goals.length > 0 ? (
         <Card>
           <CardContent className="flex flex-wrap items-baseline gap-x-8 gap-y-2 pt-6 text-sm">
-            <p className="text-slate-500">
+            <p className="text-muted-foreground">
               {t('goalList.totalTarget')}:{' '}
-              <span className="font-semibold tabular-nums text-slate-900">
+              <span className="font-semibold tabular-nums text-foreground">
                 {formatMoney(totalTarget)}
               </span>
             </p>
-            <p className="text-slate-500">
+            <p className="text-muted-foreground">
               {t('goalList.totalSaved')}:{' '}
-              <span className="font-semibold tabular-nums text-slate-900">
+              <span className="font-semibold tabular-nums text-foreground">
                 {formatMoney(totalSaved)}
               </span>
             </p>
-            <p className={reachedCount > 0 ? 'text-emerald-700' : 'text-slate-500'}>
+            <p className={reachedCount > 0 ? 'text-emerald-700' : 'text-muted-foreground'}>
               {reachedCount > 0
                 ? t('goalList.reachedCount', { count: reachedCount })
                 : t('goalList.noneReached')}
@@ -238,8 +238,8 @@ export function Goals() {
                   isPending={depositMutation.isPending}
                 />
 
-                <div className="border-t border-slate-100 pt-5">
-                  <p className="mb-4 text-sm font-medium text-slate-700">
+                <div className="border-t border-muted pt-5">
+                  <p className="mb-4 text-sm font-medium text-label">
                     {t('goalList.editSection')}
                   </p>
                   <GoalForm
@@ -250,12 +250,12 @@ export function Goals() {
                   />
                 </div>
 
-                <div className="border-t border-slate-100 pt-4">
+                <div className="border-t border-muted pt-4">
                   {isConfirmingDelete ? (
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="mr-auto text-sm text-slate-600">
+                      <span className="mr-auto text-sm text-body">
                         {t('goalList.confirmDelete')}{' '}
-                        <span className="text-slate-400">
+                        <span className="text-subtle-foreground">
                           {t('goalList.deleteWarning')}
                         </span>
                       </span>
@@ -311,10 +311,10 @@ export function Goals() {
             <Alert variant="danger" title={t('goal.loadError')} />
           ) : goals.length === 0 ? (
             <div className="py-6 text-center">
-              <p className="text-sm font-medium text-slate-900">
+              <p className="text-sm font-medium text-foreground">
                 {t('goal.empty')}
               </p>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-muted-foreground">
                 {t('goal.emptyHint')}
               </p>
             </div>

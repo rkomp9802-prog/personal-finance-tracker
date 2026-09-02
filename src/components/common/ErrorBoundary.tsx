@@ -9,17 +9,17 @@ function ErrorFallback({ error }: { error: Error }) {
   const { t } = useTranslation()
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
-      <div className="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+    <div className="flex min-h-dvh items-center justify-center bg-background p-4">
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-sm">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-50 text-amber-700">
           <AlertTriangle className="h-5 w-5" />
         </div>
 
-        <h1 className="mt-4 text-xl font-semibold tracking-tight text-slate-900">
+        <h1 className="mt-4 text-xl font-semibold tracking-tight text-foreground">
           {t('error.title')}
         </h1>
 
-        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+        <p className="mt-2 text-sm leading-relaxed text-body">
           {t('error.description')}
         </p>
 
@@ -32,10 +32,10 @@ function ErrorFallback({ error }: { error: Error }) {
         </Button>
 
         <details className="mt-4">
-          <summary className="cursor-pointer text-xs text-slate-400">
+          <summary className="cursor-pointer text-xs text-subtle-foreground">
             {t('error.details')}
           </summary>
-          <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
+          <pre className="mt-2 overflow-x-auto rounded-lg bg-background p-3 text-xs text-muted-foreground">
             {error.message}
           </pre>
         </details>

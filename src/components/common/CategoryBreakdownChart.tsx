@@ -68,10 +68,10 @@ export function CategoryBreakdownChart({
   if (visible.length === 0) {
     return (
       <div className="py-10 text-center">
-        <p className="text-sm font-medium text-slate-900">
+        <p className="text-sm font-medium text-foreground">
           {t('statistics.empty')}
         </p>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-muted-foreground">
           {t('statistics.emptyHint')}
         </p>
       </div>
@@ -144,7 +144,7 @@ export function CategoryBreakdownChart({
         </ResponsiveContainer>
       </div>
 
-      <p className="text-sm leading-relaxed text-slate-500">
+      <p className="text-sm leading-relaxed text-muted-foreground">
         {t('statistics.topCategory', {
           category: top.label,
           percent: topPercent,

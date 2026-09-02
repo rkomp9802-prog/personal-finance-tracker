@@ -99,10 +99,10 @@ export function UpcomingPayments({
   if (items.length === 0) {
     return (
       <div className="py-6 text-center">
-        <p className="text-sm font-medium text-slate-900">
+        <p className="text-sm font-medium text-foreground">
           {t('widgets.upcomingEmpty')}
         </p>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-muted-foreground">
           {t('widgets.upcomingHint')}
         </p>
       </div>
@@ -122,22 +122,22 @@ export function UpcomingPayments({
         return (
           <li
             key={item.id}
-            className="flex items-center gap-3 border-b border-slate-100 py-3 last:border-b-0"
+            className="flex items-center gap-3 border-b border-muted py-3 last:border-b-0"
           >
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground">
               <Icon className="h-4 w-4" />
             </span>
 
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-slate-900">
+              <p className="truncate text-sm font-medium text-foreground">
                 {item.label}
               </p>
-              <p className="mt-0.5 text-xs text-slate-500">
+              <p className="mt-0.5 text-xs text-muted-foreground">
                 {formatDate(item.date)} · {whenLabel(item.date)}
               </p>
             </div>
 
-            <p className="shrink-0 text-sm font-semibold tabular-nums text-slate-900">
+            <p className="shrink-0 text-sm font-semibold tabular-nums text-foreground">
               {formatMoney(item.amount)}
             </p>
           </li>

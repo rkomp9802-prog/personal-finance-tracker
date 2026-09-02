@@ -56,10 +56,10 @@ export function RecentOperations({
   if (operations.length === 0) {
     return (
       <div className="py-6 text-center">
-        <p className="text-sm font-medium text-slate-900">
+        <p className="text-sm font-medium text-foreground">
           {t('widgets.recentEmpty')}
         </p>
-        <p className="mt-1 text-sm text-slate-500">{t('widgets.recentHint')}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{t('widgets.recentHint')}</p>
       </div>
     )
   }

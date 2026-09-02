@@ -5,15 +5,19 @@ import { cn } from '@/utils/cn'
 // Здесь описаны все варианты внешнего вида кнопки.
 // Первая строка — общие классы, дальше — отличия по виду и размеру.
 const buttonStyles = cva(
-  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  // active:scale — кнопка слегка проседает под нажатием, как физическая.
+  // transition перечисляет свойства явно, чтобы в анимацию попал и transform.
+  'inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-spring active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
+        // Тень главной кнопки окрашена в её собственный синий, а не в чёрный:
+        // так она выглядит свечением предмета, а не грязью под ним.
         primary:
-          'bg-blue-600 text-white shadow-sm hover:bg-blue-700 active:bg-blue-800',
+          'bg-blue-600 text-white shadow-lg shadow-blue-600/25 hover:bg-blue-700 hover:shadow-blue-600/35 active:bg-blue-800',
         secondary:
-          'border border-slate-200 bg-white text-slate-700 shadow-sm hover:bg-slate-50 active:bg-slate-100',
-        ghost: 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
+          'border border-border bg-card text-label hover:bg-background active:bg-muted',
+        ghost: 'text-body hover:bg-muted hover:text-foreground',
         danger:
           'bg-red-600 text-white shadow-sm hover:bg-red-700 active:bg-red-800',
       },

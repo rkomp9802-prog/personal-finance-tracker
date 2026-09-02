@@ -30,7 +30,7 @@ export function AvatarUploader({
         <img
           src={avatarUrl}
           alt={t('profile.avatar')}
-          className="h-20 w-20 shrink-0 rounded-full object-cover ring-1 ring-slate-200"
+          className="h-20 w-20 shrink-0 rounded-full object-cover ring-1 ring-border"
         />
       ) : (
         <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-blue-600 text-2xl font-semibold text-white">
@@ -59,7 +59,7 @@ export function AvatarUploader({
           ) : null}
         </div>
 
-        <p className="text-sm text-slate-500">{t('profile.avatarHint')}</p>
+        <p className="text-sm text-muted-foreground">{t('profile.avatarHint')}</p>
       </div>
 
       {/* Системное поле выбора файла спрятано — вид задаём своими кнопками */}

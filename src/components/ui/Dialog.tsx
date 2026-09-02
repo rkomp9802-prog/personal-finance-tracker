@@ -52,7 +52,7 @@ export function Dialog({
       {open ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <motion.div
-            className="absolute inset-0 bg-slate-900/30 backdrop-blur-sm"
+            className="absolute inset-0 bg-overlay/30 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -64,7 +64,7 @@ export function Dialog({
             role="dialog"
             aria-modal="true"
             className={cn(
-              'relative w-full max-w-md rounded-2xl border border-slate-200 bg-white shadow-lg',
+              'relative w-full max-w-md rounded-2xl border border-border bg-card shadow-card-hover',
               className,
             )}
             initial={{ opacity: 0, scale: 0.96, y: 8 }}
@@ -76,7 +76,7 @@ export function Dialog({
               type="button"
               onClick={onClose}
               aria-label="Закрыть"
-              className="absolute right-4 top-4 rounded-md p-1 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+              className="absolute right-4 top-4 rounded-md p-1 text-subtle-foreground transition-colors hover:bg-muted hover:text-body"
             >
               <X className="h-4 w-4" />
             </button>
@@ -84,12 +84,12 @@ export function Dialog({
             {title || description ? (
               <div className="px-6 pb-4 pr-12 pt-6">
                 {title ? (
-                  <h2 className="text-base font-semibold tracking-tight text-slate-900">
+                  <h2 className="text-lg font-semibold tracking-tight text-foreground">
                     {title}
                   </h2>
                 ) : null}
                 {description ? (
-                  <p className="mt-1 text-sm text-slate-500">{description}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">{description}</p>
                 ) : null}
               </div>
             ) : null}
@@ -97,7 +97,7 @@ export function Dialog({
             {children ? <div className="px-6 pb-6">{children}</div> : null}
 
             {footer ? (
-              <div className="flex justify-end gap-3 border-t border-slate-100 px-6 py-4">
+              <div className="flex justify-end gap-3 border-t border-muted px-6 py-4">
                 {footer}
               </div>
             ) : null}

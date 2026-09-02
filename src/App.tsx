@@ -43,7 +43,7 @@ const Profile = lazy(async () => ({
 // Что показать, пока файл страницы скачивается.
 function PageLoading() {
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-4">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
       <Skeleton className="h-8 w-48" />
       <Skeleton className="h-36 w-full rounded-2xl" />
       <Skeleton className="h-56 w-full rounded-2xl" />

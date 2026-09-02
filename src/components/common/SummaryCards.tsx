@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Card, CardContent } from '@/components/ui/Card'
+import { BorderBeam } from '@/components/kit/border-beam'
 import { AnimatedNumber } from '@/components/common/AnimatedNumber'
 import { EntityCard } from '@/components/common/EntityCard'
 import { formatMoney } from '@/utils/format'
@@ -14,27 +15,36 @@ export function SummaryCards({ summary }: SummaryCardsProps) {
   const isPositive = summary.balance >= 0
 
   return (
-    <div className="flex flex-col gap-4">
-      {/* Главный показатель экрана — самый крупный текст на странице */}
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-sm font-medium text-slate-500">
+    <div className="flex flex-col gap-6">
+      {/* Главный показатель экрана — самый крупный текст и единственная
+          карточка со светящейся рамкой. Выделять так можно только одно. */}
+      <Card className="relative overflow-hidden">
+        <CardContent className="pt-8 pb-8">
+          <p className="text-sm font-medium text-muted-foreground">
             {t('dashboard.balance')}
           </p>
 
-          <p className="mt-2 text-4xl font-semibold tracking-tight tabular-nums text-slate-900 sm:text-5xl">
+          <p className="mt-3 text-5xl font-semibold tracking-tighter tabular-nums text-foreground sm:text-6xl">
             <AnimatedNumber value={summary.balance} format={formatMoney} />
           </p>
 
-          <p className="mt-3 text-sm text-slate-500">
+          <p className="mt-3 text-sm text-muted-foreground">
             {t('dashboard.balanceHint')} ·{' '}
-            <span className={isPositive ? 'text-slate-500' : 'text-amber-700'}>
+            <span className={isPositive ? 'text-muted-foreground' : 'text-amber-700'}>
               {isPositive
                 ? t('dashboard.positiveBalance')
                 : t('dashboard.negativeBalance')}
             </span>
           </p>
         </CardContent>
+
+        <BorderBeam
+          size={120}
+          duration={8}
+          borderWidth={1.5}
+          colorFrom="#2563eb"
+          colorTo="#60a5fa"
+        />
       </Card>
 
       <div className="grid gap-4 sm:grid-cols-3">

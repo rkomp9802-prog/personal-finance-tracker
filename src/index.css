@@ -3,27 +3,56 @@
 /* Разрешаем приставку dark: — она сработает, когда на странице есть класс dark */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Шрифт интерфейса. Geist — гротеск с ровными цифрами и заметной
+   разницей между начертаниями 500 и 600, поэтому заголовки отличаются
+   от текста без увеличения размера. Подключён в index.html.
+   Дальше идёт системный запас на случай, если шрифт не загрузился. */
+@theme {
+  --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, sans-serif;
+
+  /* Тени карточек. Три слоя вместо одного: ближний даёт контур,
+     дальний — рассеянное окружающее затенение. Цвет не чёрный, а тон
+     нашего тёмного (#0f172a) — чёрная тень на синеватом фоне выглядит
+     грязной. Свет один и тот же во всём приложении: сверху. */
+  --shadow-card: 0 1px 2px -1px rgb(15 23 42 / 0.05),
+    0 4px 10px -3px rgb(15 23 42 / 0.05), 0 12px 28px -10px rgb(15 23 42 / 0.07);
+  --shadow-card-hover: 0 2px 4px -2px rgb(15 23 42 / 0.06),
+    0 8px 18px -6px rgb(15 23 42 / 0.07), 0 20px 40px -14px rgb(15 23 42 / 0.1);
+
+  /* Кривая движения. Резко трогается, мягко останавливается — так
+     ведёт себя предмет с массой. Стандартный ease-in-out ощущается
+     ватным, потому что симметричен. */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
 html,
 body,
 #root {
   height: 100%;
 }
 
-/* В тёмной теме переопределяем значения серой шкалы.
-   Все классы вроде text-slate-900 и border-slate-200
-   подхватывают новые значения сами, без правок в компонентах. */
-.dark {
-  --color-slate-50: #020617;
-  --color-slate-100: #1e293b;
-  --color-slate-200: #334155;
-  --color-slate-300: #475569;
-  --color-slate-400: #64748b;
-  --color-slate-500: #94a3b8;
-  --color-slate-600: #cbd5e1;
-  --color-slate-700: #e2e8f0;
-  --color-slate-800: #f1f5f9;
-  --color-slate-900: #f8fafc;
+/* Человек мог попросить систему убрать анимации — обычно из-за
+   вестибулярных нарушений, когда движение на экране вызывает тошноту
+   и головокружение. Тогда всё движение схлопывается в мгновенную смену
+   состояния. Не отключаем анимации совсем, а сводим к 0.01 мс: так
+   события их окончания всё равно приходят и логика не ломается. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
+/* В тёмной теме переопределяем только акцентные цвета — синий, янтарный,
+   красный, изумрудный. Они несут смысл (перерасход, ошибка, цель достигнута),
+   поэтому остаются обычными классами Tailwind, а не ролями.
+   Нейтральные серые цвета живут ниже, в ролевых токенах. */
+.dark {
   --color-blue-50: #172554;
   --color-blue-100: #1e3a8a;
   --color-blue-700: #bfdbfe;
@@ -43,12 +72,141 @@ body,
   color-scheme: dark;
 }
 
-/* bg-white во всём приложении означает «поверхность карточки» — она темнеет.
-   text-white означает «текст на синей кнопке» — его не трогаем. */
-.dark .bg-white {
-  background-color: #0f172a;
+/* ------------------------------------------------------------------
+   ЦВЕТА ИНТЕРФЕЙСА
+
+   Единственный список нейтральных цветов приложения. Компоненты не
+   называют цвет («серый номер 500»), а называют роль: text-foreground —
+   основной текст, text-muted-foreground — приглушённая подпись,
+   bg-card — поверхность карточки, border-border — рамка.
+
+   Зачем. Раньше тёмная тема подменяла саму шкалу Tailwind, из-за чего
+   bg-slate-50 означал почти чёрный, а поверхность карточки чинилась
+   отдельным правилом .dark .bg-white. Теперь тёмная тема — это просто
+   второй набор значений для тех же ролей.
+
+   Пять ступеней текста, от самого тёмного к самому светлому:
+   foreground → label → body → muted-foreground → subtle-foreground.
+   ------------------------------------------------------------------ */
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+
+  --primary: #2563eb;
+  --primary-foreground: #f8fafc;
+
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --accent: #f1f5f9;
+  --accent-foreground: #0f172a;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #f8fafc;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+
+  /* Промежуточные ступени текста: подписи полей и основной текст меню.
+     Значения совпадают с бывшими slate-700 и slate-600. */
+  --label: #334155;
+  --body: #475569;
+
+  /* Самый приглушённый текст: даты, плейсхолдеры (бывший slate-400). */
+  --subtle-foreground: #94a3b8;
+
+  /* Затемнение под выезжающим меню. Одинаковое в обеих темах:
+     подложка обязана быть тёмной и на светлом, и на тёмном фоне. */
+  --overlay: #0f172a;
 }
 
-.dark .bg-white\/70 {
-  background-color: rgb(15 23 42 / 0.75);
+/* Те же роли, но значения для тёмной темы.
+   Класс dark ставится на страницу нашим ThemeContext — как и раньше. */
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+
+  --popover: #0f172a;
+  --popover-foreground: #f8fafc;
+
+  --primary: #3b82f6;
+  --primary-foreground: #0f172a;
+
+  --secondary: #1e293b;
+  --secondary-foreground: #f8fafc;
+
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f8fafc;
+
+  --border: #334155;
+  --input: #334155;
+  --ring: #3b82f6;
+
+  --label: #e2e8f0;
+  --body: #cbd5e1;
+
+  --subtle-foreground: #64748b;
+
+  --overlay: #0f172a;
+}
+
+/* А здесь Tailwind узнаёт, что появились классы bg-background,
+   text-foreground, border-border и остальные из списка выше.
+   Слово inline означает «подставляй значение в момент использования» —
+   благодаря этому переключение темы работает без перезагрузки. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-label: var(--label);
+  --color-body: var(--body);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-overlay: var(--overlay);
 }

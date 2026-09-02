@@ -72,12 +72,12 @@ export function Calendar() {
   const hasDayOperations = dayIncomes.length > 0 || dayExpenses.length > 0
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           {t('nav.calendar')}
         </h1>
-        <p className="mt-1 text-sm text-slate-600">{t('pages.calendar')}</p>
+        <p className="mt-2 text-pretty text-base text-body">{t('pages.calendar')}</p>
       </div>
 
       <Card>
@@ -144,11 +144,11 @@ export function Calendar() {
 
         <CardContent>
           {!selectedDate ? (
-            <p className="py-4 text-center text-sm text-slate-500">
+            <p className="py-4 text-center text-sm text-muted-foreground">
               {t('calendar.selectDay')}
             </p>
           ) : !hasDayOperations ? (
-            <p className="py-4 text-center text-sm text-slate-500">
+            <p className="py-4 text-center text-sm text-muted-foreground">
               {t('calendar.dayEmpty')}
             </p>
           ) : (

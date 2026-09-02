@@ -28,3 +28,9 @@ dist-ssr
 .env.local
 .env.development.local
 .env.production.local
+
+# Скилы для AI-агентов: ставятся локально командой npx skills add,
+# в репозитории им не место. Список установленного — в skills-lock.json.
+.agents/
+.claude/skills/
+skills-lock.json

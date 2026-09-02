@@ -1,4 +1,7 @@
 {
+    "a11y": {
+    "skipToContent": "Skip to content"
+  },
     "error": {
     "title": "Something went wrong",
     "description": "The app hit an unexpected error. Reloading the page usually fixes it.",

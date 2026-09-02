@@ -52,24 +52,24 @@ export function Statistics() {
   const averageSaved = averageIncome - averageExpense
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+        <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           {t('nav.statistics')}
         </h1>
-        <p className="mt-1 text-sm text-slate-600">{t('pages.statistics')}</p>
+        <p className="mt-2 text-pretty text-base text-body">{t('pages.statistics')}</p>
       </div>
 
       {/* Один переключатель на всю страницу — над графиками, в одну строку */}
       <div className="flex flex-wrap items-center gap-3">
-        <span className="text-sm font-medium text-slate-700">
+        <span className="text-sm font-medium text-label">
           {t('statsPage.period')}
         </span>
 
         <div
           role="group"
           aria-label={t('statsPage.period')}
-          className="flex items-center gap-0.5 rounded-lg border border-slate-200 bg-white p-0.5"
+          className="flex items-center gap-0.5 rounded-lg border border-border bg-card p-0.5"
         >
           {periodOptions.map((option) => (
             <button
@@ -80,7 +80,7 @@ export function Statistics() {
                 'rounded-md px-3 py-1.5 text-sm font-medium transition-colors',
                 months === option.months
                   ? 'bg-blue-600 text-white'
-                  : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900',
+                  : 'text-muted-foreground hover:bg-muted hover:text-foreground',
               )}
             >
               {t(option.labelKey)}
@@ -88,7 +88,7 @@ export function Statistics() {
           ))}
         </div>
 
-        <span className="text-sm text-slate-400">
+        <span className="text-sm text-subtle-foreground">
           {t('statsPage.periodHint')}
         </span>
       </div>

@@ -69,7 +69,7 @@ function Shell({
     <Card
       interactive={Boolean(onClick)}
       onClick={onClick}
-      className={cn('p-5', onClick && 'cursor-pointer', className)}
+      className={cn('p-6', onClick && 'cursor-pointer', className)}
     >
       {children}
     </Card>
@@ -81,17 +81,15 @@ function ProgressBar({
   tone = 'neutral',
 }: {
   percent: number
-  tone?: 'neutral' | 'warning' | 'success'
+  tone?: 'neutral' | 'warning'
 }) {
-  const barColor =
-    tone === 'warning'
-      ? 'bg-amber-500'
-      : tone === 'success'
-        ? 'bg-emerald-500'
-        : 'bg-blue-600'
+  // Полоса знает два состояния, а не три. Достигнутая цель не красится
+  // в третий цвет — про неё прямым текстом написано рядом, и это
+  // понятнее цветового кода, который ещё надо разгадать.
+  const barColor = tone === 'warning' ? 'bg-amber-500' : 'bg-blue-600'
 
   return (
-    <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+    <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-muted">
       <div
         className={cn(
           'h-full rounded-full transition-[width] duration-500',
@@ -114,24 +112,24 @@ export function EntityCard(props: EntityCardProps) {
       <Shell className={props.className} onClick={props.onClick}>
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="truncate text-sm font-medium text-slate-900">
+            <p className="truncate text-sm font-medium text-foreground">
               {props.category}
             </p>
             {source ? (
-              <p className="mt-0.5 truncate text-sm text-slate-500">{source}</p>
+              <p className="mt-0.5 truncate text-sm text-muted-foreground">{source}</p>
             ) : null}
             {props.note ? (
-              <p className="mt-1 truncate text-sm text-slate-400">
+              <p className="mt-1 truncate text-sm text-subtle-foreground">
                 {props.note}
               </p>
             ) : null}
           </div>
 
           <div className="shrink-0 text-right">
-            <p className="text-base font-semibold tabular-nums text-slate-900">
+            <p className="text-base font-semibold tabular-nums text-foreground">
               {sign} {formatMoney(props.amount)}
             </p>
-            <p className="mt-0.5 text-xs text-slate-400">
+            <p className="mt-0.5 text-xs text-subtle-foreground">
               {formatDate(props.date)}
             </p>
           </div>
@@ -149,10 +147,10 @@ export function EntityCard(props: EntityCardProps) {
     return (
       <Shell className={props.className} onClick={props.onClick}>
         <div className="flex items-baseline justify-between gap-4">
-          <p className="truncate text-sm font-medium text-slate-900">
+          <p className="truncate text-sm font-medium text-foreground">
             {props.category}
           </p>
-          <p className="shrink-0 text-sm tabular-nums text-slate-500">
+          <p className="shrink-0 text-sm tabular-nums text-muted-foreground">
             {Math.round(percent)}%
           </p>
         </div>
@@ -163,13 +161,13 @@ export function EntityCard(props: EntityCardProps) {
         />
 
         <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
-          <p className="tabular-nums text-slate-500">
+          <p className="tabular-nums text-muted-foreground">
             {formatMoney(props.spentAmount)} / {formatMoney(props.limitAmount)}
           </p>
           <p
             className={cn(
               'shrink-0 tabular-nums',
-              isOverLimit ? 'text-amber-700' : 'text-slate-500',
+              isOverLimit ? 'text-amber-700' : 'text-muted-foreground',
             )}
           >
             {isOverLimit
@@ -191,21 +189,18 @@ export function EntityCard(props: EntityCardProps) {
     return (
       <Shell className={props.className} onClick={props.onClick}>
         <div className="flex items-baseline justify-between gap-4">
-          <p className="truncate text-sm font-medium text-slate-900">
+          <p className="truncate text-sm font-medium text-foreground">
             {props.title}
           </p>
-          <p className="shrink-0 text-sm tabular-nums text-slate-500">
+          <p className="shrink-0 text-sm tabular-nums text-muted-foreground">
             {Math.round(percent)}%
           </p>
         </div>
 
-        <ProgressBar
-          percent={percent}
-          tone={isReached ? 'success' : 'neutral'}
-        />
+        <ProgressBar percent={percent} />
 
         <div className="mt-3 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
-          <p className="tabular-nums text-slate-500">
+          <p className="tabular-nums text-muted-foreground">
             {formatMoney(props.currentAmount)} /{' '}
             {formatMoney(props.targetAmount)}
           </p>
@@ -214,7 +209,7 @@ export function EntityCard(props: EntityCardProps) {
               {t('entityCard.goalReached')}
             </p>
           ) : props.deadline ? (
-            <p className="shrink-0 text-slate-400">
+            <p className="shrink-0 text-subtle-foreground">
               {t('entityCard.until')} {formatDate(props.deadline)}
             </p>
           ) : null}
@@ -227,21 +222,21 @@ export function EntityCard(props: EntityCardProps) {
 
   return (
     <Shell className={props.className} onClick={props.onClick}>
-      <p className="text-sm font-medium text-slate-500">{props.label}</p>
+      <p className="text-sm font-medium text-muted-foreground">{props.label}</p>
 
-      <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums text-slate-900">
+      <p className="mt-2 text-3xl font-semibold tracking-tight tabular-nums text-foreground">
         <AnimatedNumber value={props.value} format={formatMoney} />
       </p>
 
       {props.trend && props.trendLabel ? (
-        <div className="mt-2 flex items-center gap-1.5 text-sm text-slate-500">
+        <div className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
           <TrendIcon className="h-4 w-4" aria-hidden="true" />
           <span>{props.trendLabel}</span>
         </div>
       ) : null}
 
       {props.caption ? (
-        <p className="mt-2 text-sm leading-relaxed text-slate-500">
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
           {props.caption}
         </p>
       ) : null}

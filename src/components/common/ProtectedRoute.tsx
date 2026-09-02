@@ -5,8 +5,8 @@ import { useAuth } from '@/context/AuthContext'
 // Пока идёт проверка cookies — показываем заглушку вместо пустого экрана.
 function LoadingScreen() {
   return (
-    <div className="min-h-screen bg-slate-50 p-6">
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-4">
+    <div className="min-h-dvh bg-background p-6">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
         <Skeleton className="h-8 w-56" />
         <Skeleton className="h-32 w-full rounded-2xl" />
         <Skeleton className="h-32 w-full rounded-2xl" />

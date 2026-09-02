@@ -78,15 +78,15 @@ export function Register() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 p-4">
+    <div className="flex min-h-dvh items-center justify-center bg-background p-4">
       <div className="w-full max-w-sm">
         <div className="mb-4 flex justify-center">
           <LanguageSwitcher />
         </div>
 
         <div className="mb-6 text-center">
-          <p className="text-sm font-medium text-slate-500">{t('app.name')}</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+          <p className="text-sm font-medium text-muted-foreground">{t('app.name')}</p>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
             {t('auth.createAccountHeading')}
           </h1>
         </div>
@@ -158,7 +158,7 @@ export function Register() {
           </CardContent>
         </Card>
 
-        <p className="mt-4 text-center text-sm text-slate-600">
+        <p className="mt-4 text-center text-sm text-body">
           {t('auth.haveAccount')}{' '}
           <Link
             to="/login"
