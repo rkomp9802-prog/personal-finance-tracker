@@ -69,7 +69,7 @@ function Shell({
     <Card
       interactive={Boolean(onClick)}
       onClick={onClick}
-      className={cn('p-5', onClick && 'cursor-pointer', className)}
+      className={cn('p-6', onClick && 'cursor-pointer', className)}
     >
       {children}
     </Card>
@@ -229,7 +229,7 @@ export function EntityCard(props: EntityCardProps) {
     <Shell className={props.className} onClick={props.onClick}>
       <p className="text-sm font-medium text-muted-foreground">{props.label}</p>
 
-      <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums text-foreground">
+      <p className="mt-2 text-3xl font-semibold tracking-tight tabular-nums text-foreground">
         <AnimatedNumber value={props.value} format={formatMoney} />
       </p>
 

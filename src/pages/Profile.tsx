@@ -122,10 +122,10 @@ export function Profile() {
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+        <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           {t('nav.profile')}
         </h1>
-        <p className="mt-1 text-sm text-body">{t('pages.profile')}</p>
+        <p className="mt-2 text-pretty text-base text-body">{t('pages.profile')}</p>
       </div>
 
       {profileQuery.isPending ? (

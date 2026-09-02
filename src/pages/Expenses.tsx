@@ -111,13 +111,13 @@ export function Expenses() {
   const isPanelOpen = isFormOpen || editingExpense !== null
 
   return (
-    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight text-foreground">
+          <h1 className="text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
             {t('nav.expenses')}
           </h1>
-          <p className="mt-1 text-sm text-body">{t('pages.expenses')}</p>
+          <p className="mt-2 text-pretty text-base text-body">{t('pages.expenses')}</p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">

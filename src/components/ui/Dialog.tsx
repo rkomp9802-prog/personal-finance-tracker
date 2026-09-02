@@ -64,7 +64,7 @@ export function Dialog({
             role="dialog"
             aria-modal="true"
             className={cn(
-              'relative w-full max-w-md rounded-2xl border border-border bg-card shadow-lg',
+              'relative w-full max-w-md rounded-2xl border border-border bg-card shadow-card-hover',
               className,
             )}
             initial={{ opacity: 0, scale: 0.96, y: 8 }}

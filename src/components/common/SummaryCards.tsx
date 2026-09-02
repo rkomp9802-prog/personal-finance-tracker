@@ -19,12 +19,12 @@ export function SummaryCards({ summary }: SummaryCardsProps) {
       {/* Главный показатель экрана — самый крупный текст и единственная
           карточка со светящейся рамкой. Выделять так можно только одно. */}
       <Card className="relative overflow-hidden">
-        <CardContent className="pt-6">
+        <CardContent className="pt-8 pb-8">
           <p className="text-sm font-medium text-muted-foreground">
             {t('dashboard.balance')}
           </p>
 
-          <p className="mt-2 text-4xl font-semibold tracking-tight tabular-nums text-foreground sm:text-5xl">
+          <p className="mt-3 text-5xl font-semibold tracking-tighter tabular-nums text-foreground sm:text-6xl">
             <AnimatedNumber value={summary.balance} format={formatMoney} />
           </p>
 

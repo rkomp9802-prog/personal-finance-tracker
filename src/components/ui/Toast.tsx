@@ -109,7 +109,7 @@ function ToastCard({
       exit={{ opacity: 0, y: 8, scale: 0.98 }}
       transition={{ duration: 0.18 }}
       className={cn(
-        'pointer-events-auto flex items-start gap-3 rounded-2xl border bg-card px-4 py-3 shadow-md',
+        'pointer-events-auto flex items-start gap-3 rounded-2xl border bg-card px-4 py-3 shadow-card-hover',
         toastStyles[toast.variant],
       )}
     >

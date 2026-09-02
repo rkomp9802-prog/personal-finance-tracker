@@ -82,7 +82,7 @@ export function MainLayout() {
                 animate={{ x: 0 }}
                 exit={{ x: '-100%' }}
                 transition={{ type: 'tween', duration: 0.25, ease: 'easeOut' }}
-                className="fixed inset-y-0 left-0 z-50 w-72 border-r border-border bg-card shadow-xl lg:hidden"
+                className="fixed inset-y-0 left-0 z-50 w-72 border-r border-border bg-card shadow-card-hover lg:hidden"
               >
                 <div className="flex h-16 items-center justify-between border-b border-border px-4">
                   <p className="text-sm font-semibold tracking-tight text-foreground">
@@ -104,7 +104,7 @@ export function MainLayout() {
           ) : null}
         </AnimatePresence>
 
-        <main id="main" className="min-w-0 flex-1 p-4 sm:p-6">
+        <main id="main" className="min-w-0 flex-1 p-5 sm:p-8 lg:p-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}

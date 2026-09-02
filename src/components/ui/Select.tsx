@@ -54,7 +54,7 @@ export function Select({
           id={selectId}
           aria-invalid={error ? true : undefined}
           className={cn(
-            'h-10 w-full appearance-none rounded-lg border bg-card px-3 pr-9 text-sm text-foreground shadow-sm transition-colors focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-background disabled:text-subtle-foreground',
+            'h-10 w-full appearance-none rounded-lg border bg-card px-3 pr-9 text-sm text-foreground transition-[color,background-color,border-color,box-shadow] duration-200 ease-spring focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:bg-background disabled:text-subtle-foreground',
             error
               ? 'border-red-300 focus:border-red-400 focus:ring-red-100'
               : 'border-border focus:border-blue-500 focus:ring-blue-100',

@@ -14,8 +14,13 @@ export function Card({
   return (
     <div
       className={cn(
-        'rounded-2xl border border-border bg-card shadow-sm',
-        interactive && 'transition-shadow duration-200 hover:shadow-md',
+        // В светлой теме карточку отделяет от фона тень, рамка не нужна:
+        // рамка плюс тень плюс белая заливка — самый узнаваемый признак
+        // шаблонной вёрстки. В тёмной теме наоборот: тень на тёмном фоне
+        // не читается, границу держит волосяная рамка.
+        'rounded-2xl bg-card shadow-card dark:border dark:border-border dark:shadow-none',
+        interactive &&
+          'transition-[box-shadow,transform] duration-300 ease-spring hover:-translate-y-0.5 hover:shadow-card-hover',
         className,
       )}
       {...props}
@@ -45,7 +50,7 @@ export function CardTitle({
   return (
     <h3
       className={cn(
-        'text-lg font-semibold tracking-tight text-foreground',
+        'text-lg font-semibold tracking-tight text-foreground text-balance',
         className,
       )}
       {...props}
